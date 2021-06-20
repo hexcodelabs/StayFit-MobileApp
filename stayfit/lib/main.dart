@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:stayfit/utils/themes.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/gym_information_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/user_selection_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,10 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.appTheme,
+      home: WelcomeScreen(),
     );
   }
 }
