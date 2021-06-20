@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stayfit/view/screens/GYM/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,16 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: GYMHomePage(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
