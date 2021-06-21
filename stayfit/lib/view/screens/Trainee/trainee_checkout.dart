@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
-class TraineeCheckout extends StatefulWidget {
-  @override
-  _TraineeCheckoutState createState() => _TraineeCheckoutState();
-}
+class TraineeCheckout extends StatelessWidget {
 
-class _TraineeCheckoutState extends State<TraineeCheckout> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+
+
     return Scaffold(
       backgroundColor: Color(0x0096a7af),
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: new BoxDecoration(
       gradient: new LinearGradient(
@@ -30,7 +29,7 @@ class _TraineeCheckoutState extends State<TraineeCheckout> {
         child: Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(28, 90, 28, 0),
+          padding: const EdgeInsets.fromLTRB(28, 60, 28, 0),
           child: Container(
             height: height*0.65,
             child: Column(

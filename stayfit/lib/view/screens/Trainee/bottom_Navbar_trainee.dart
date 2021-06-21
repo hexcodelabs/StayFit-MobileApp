@@ -27,6 +27,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
     ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: pages[bottomBarIndex],
       bottomNavigationBar: Theme(
