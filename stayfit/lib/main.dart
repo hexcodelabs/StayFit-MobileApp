@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
+
+import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -9,20 +14,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool gymUser = false;
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
-      home: WelcomeScreen(),
+      home: (gymUser) ? GYMDrawerHandler() : TraineeBottomNavHandler(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
