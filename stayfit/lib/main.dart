@@ -6,7 +6,6 @@ import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
 import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
 
-
 void main() {
   runApp(MyApp());
 }
