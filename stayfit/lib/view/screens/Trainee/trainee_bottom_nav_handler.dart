@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_home_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
-class BottomNavbarTrainer extends StatefulWidget {
+class TraineeBottomNavHandler extends StatefulWidget {
   @override
-  _BottomNavbarTrainerState createState() => _BottomNavbarTrainerState();
+  _TraineeBottomNavHandlerState createState() =>
+      _TraineeBottomNavHandlerState();
 }
 
-class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
+class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
   var bottomBarIndex = 0;
 
   @override
@@ -19,13 +22,13 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      FirstPage(),
-      SecondPage(),
+      TraineeFavouritesPage(),
+      TraineeHomePage(),
       ThirdPage(),
-      FourthPage()
     ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: pages[bottomBarIndex],
       bottomNavigationBar: Theme(
@@ -35,20 +38,20 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
           highlightColor: Colors.transparent,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(8.0),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: Colors.black.withOpacity(0.4),
                     blurRadius: 50,
-                    offset: Offset(0, -15),
+                    offset: Offset(0, -25),
                   ),
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 child: BottomNavigationBar(
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
@@ -75,7 +78,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainer/Home.svg",
+                                "assets/icons/NavBar_trainee/favourite.svg",
                                 color: darkGreen,
                               ),
                             )),
@@ -84,7 +87,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainer/Home.svg",
+                          "assets/icons/NavBar_trainee/favourite.svg",
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -94,7 +97,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                           text: "Kalender",
                           size: 12,
                           weight: FontWeight.normal),
-                      backgroundColor: darkGreen,
+                      backgroundColor: Color(0xff30444E),
                     ),
                     BottomNavigationBarItem(
                       activeIcon: Container(
@@ -109,7 +112,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainer/User.svg",
+                                "assets/icons/NavBar_trainee/Home.svg",
                                 color: darkGreen,
                               ),
                             )),
@@ -118,7 +121,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainer/User.svg",
+                          "assets/icons/NavBar_trainee/Home.svg",
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -143,10 +146,8 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainer/Instructors.svg",
+                                "assets/icons/NavBar_trainee/User.svg",
                                 color: darkGreen,
-                                height: 22,
-                                width: 22,
                               ),
                             )),
                       ),
@@ -154,9 +155,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainer/Instructors.svg",
-                          height: 22,
-                          width: 22,
+                          "assets/icons/NavBar_trainee/User.svg",
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -168,40 +167,6 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                           weight: FontWeight.normal),
                       backgroundColor: Colors.white,
                     ),
-                    BottomNavigationBarItem(
-                      activeIcon: Container(
-                        decoration: BoxDecoration(
-                            color: bottomBarIndex == 3
-                                ? Color(0xff3DD598)
-                                : Colors.transparent,
-                            shape: BoxShape.circle),
-                        child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: SizedBox(
-                              height: 25,
-                              width: 25,
-                              child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainer/Notification.svg",
-                                color: darkGreen,
-                              ),
-                            )),
-                      ),
-                      icon: SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainer/Notification.svg",
-                        ),
-                      ),
-                      // ignore: deprecated_member_use
-                      title: customText(
-                          color:
-                              bottomBarIndex == 3 ? Colors.black : Colors.grey,
-                          text: "Madplan",
-                          size: 12,
-                          weight: FontWeight.normal),
-                      backgroundColor: Colors.white,
-                    )
                   ],
                 ),
               )),
@@ -242,18 +207,6 @@ class ThirdPage extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       body: Container(
         color: Colors.yellow,
-      ),
-    );
-  }
-}
-
-class FourthPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Container(
-        color: Colors.blue,
       ),
     );
   }

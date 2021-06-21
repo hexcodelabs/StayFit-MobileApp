@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/controller/provider/trainee_provider.dart';
-import 'package:stayfit/view/screens/GYM/home.dart';
-import 'package:stayfit/view/screens/Trainee/bottom_Navbar_trainee.dart';
 import 'package:provider/provider.dart';
+
+import 'package:stayfit/utils/themes.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
+
+import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -20,10 +25,10 @@ class MyApp extends StatelessWidget {
       ],
         child: MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: (gymUser) ? GYMHomePage() : BottomNavbarTrainee(),
+          debugShowCheckedModeBanner: false,
+      theme: AppTheme.appTheme,
+          // home: (gymUser) ? GYMDrawerHandler() : TraineeBottomNavHandler(),
+          home: WelcomeScreen(),
     ));
   }
 }

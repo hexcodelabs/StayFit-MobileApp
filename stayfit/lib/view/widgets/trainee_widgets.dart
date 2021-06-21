@@ -235,7 +235,7 @@ Widget subscriptionCardOne(double height,double width, String type, String place
             ),
           ),
           Positioned(
-            top: 102,
+            top: 150,
             left: -21,
             child: Container(
               width: 187,
@@ -302,7 +302,7 @@ Widget subscriptionCardTwo(double height,double width,String type, String place,
         child: Stack(
           children: [
             Positioned(
-              top: 90,
+              top: 140,
               left: -18,
               child: Container(
                 width: 79,
@@ -374,7 +374,7 @@ Widget subscriptionCardThree(double height,double width, String type, String pla
         child: Stack(
           children: [
             Positioned(
-              top: 100,
+              top: 160,
               left: 90,
               child: Container(
                 width: 80,

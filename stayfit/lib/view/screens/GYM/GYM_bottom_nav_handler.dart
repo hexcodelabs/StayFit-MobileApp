@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
-import 'package:stayfit/view/screens/Trainee/trainee_home.dart';
-import 'package:stayfit/view/screens/Trainee/trainee_subscription.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
-class BottomNavbarTrainee extends StatefulWidget {
+import 'event_card.dart';
+
+class GYMBottomNavHandler extends StatefulWidget {
   @override
-  _BottomNavbarTraineeState createState() => _BottomNavbarTraineeState();
+  _GYMBottomNavHandlerState createState() => _GYMBottomNavHandlerState();
 }
 
-class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
+class _GYMBottomNavHandlerState extends State<GYMBottomNavHandler> {
   var bottomBarIndex = 0;
 
   @override
@@ -21,13 +21,13 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      TraineeSubscription(),
-      TraineeHome(),
+      FirstPage(),
+      SecondPage(),
       ThirdPage(),
+      FourthPage()
     ];
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: pages[bottomBarIndex],
       bottomNavigationBar: Theme(
@@ -37,10 +37,10 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
           highlightColor: Colors.transparent,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(0.0),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: Colors.black.withOpacity(0.4),
@@ -77,7 +77,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainee/favourite.svg",
+                                "assets/icons/NavBar_trainer/Home.svg",
                                 color: darkGreen,
                               ),
                             )),
@@ -86,7 +86,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainee/favourite.svg",
+                          "assets/icons/NavBar_trainer/Home.svg",
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -96,7 +96,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                           text: "Kalender",
                           size: 12,
                           weight: FontWeight.normal),
-                      backgroundColor: Color(0xff30444E),
+                      backgroundColor: darkGreen,
                     ),
                     BottomNavigationBarItem(
                       activeIcon: Container(
@@ -111,7 +111,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainee/Home.svg",
+                                "assets/icons/NavBar_trainer/User.svg",
                                 color: darkGreen,
                               ),
                             )),
@@ -120,7 +120,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainee/Home.svg",
+                          "assets/icons/NavBar_trainer/User.svg",
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -145,8 +145,10 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               height: 25,
                               width: 25,
                               child: SvgPicture.asset(
-                                "assets/icons/NavBar_trainee/User.svg",
+                                "assets/icons/NavBar_trainer/Instructors.svg",
                                 color: darkGreen,
+                                height: 22,
+                                width: 22,
                               ),
                             )),
                       ),
@@ -154,7 +156,9 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                         height: 25,
                         width: 25,
                         child: SvgPicture.asset(
-                          "assets/icons/NavBar_trainee/User.svg",
+                          "assets/icons/NavBar_trainer/Instructors.svg",
+                          height: 22,
+                          width: 22,
                         ),
                       ),
                       // ignore: deprecated_member_use
@@ -166,6 +170,40 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                           weight: FontWeight.normal),
                       backgroundColor: Colors.white,
                     ),
+                    BottomNavigationBarItem(
+                      activeIcon: Container(
+                        decoration: BoxDecoration(
+                            color: bottomBarIndex == 3
+                                ? Color(0xff3DD598)
+                                : Colors.transparent,
+                            shape: BoxShape.circle),
+                        child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: SvgPicture.asset(
+                                "assets/icons/NavBar_trainer/Notification.svg",
+                                color: darkGreen,
+                              ),
+                            )),
+                      ),
+                      icon: SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: SvgPicture.asset(
+                          "assets/icons/NavBar_trainer/Notification.svg",
+                        ),
+                      ),
+                      // ignore: deprecated_member_use
+                      title: customText(
+                          color:
+                              bottomBarIndex == 3 ? Colors.black : Colors.grey,
+                          text: "Madplan",
+                          size: 12,
+                          weight: FontWeight.normal),
+                      backgroundColor: Colors.white,
+                    )
                   ],
                 ),
               )),
@@ -179,9 +217,26 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Container(
-        color: Colors.green,
+      backgroundColor: darkGreen,
+      body: GridView.count(
+        childAspectRatio: 1.25,
+        crossAxisCount: 1,
+        children: [
+          EventCard(
+            eventName: 'Yoga',
+            date: 'May 21st',
+            likes: 2500,
+            imagePath: 'assets/images/yoga.jpeg',
+            time: '1.00pm - 2.00pm ',
+          ),
+          EventCard(
+            eventName: 'Body \nBuilding',
+            date: 'May 22st',
+            likes: 2200,
+            imagePath: 'assets/images/gym.jpeg',
+            time: '1.00pm - 2.00pm ',
+          ),
+        ],
       ),
     );
   }
@@ -203,9 +258,91 @@ class ThirdPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: darkGreen,
+      body: GridView.count(
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
+        childAspectRatio: 0.8,
+        crossAxisCount: 2,
+        children: [
+          InstructorCard(
+            name: 'Jonny Sins',
+            imagePath: 'assets/images/jonny.jpeg',
+          ),
+          InstructorCard(
+            name: 'Danny Daniels',
+            imagePath: 'assets/images/danny.jpeg',
+          ),
+          InstructorCard(
+            name: 'Shasha Grey',
+            imagePath: 'assets/images/sasha.jpeg',
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Container(
+              child: IconButton(
+                iconSize: 150,
+                color: Colors.white60,
+                icon: Icon(Icons.add),
+                onPressed: () {},
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white24,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FourthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Container(
-        color: Colors.yellow,
+        color: Colors.blue,
+      ),
+    );
+  }
+}
+
+class InstructorCard extends StatelessWidget {
+  String name;
+  String imagePath;
+
+  InstructorCard({this.name, this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        children: [
+          Flexible(
+            flex: 6,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(imagePath),
+                ),
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Text(
+            name,
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.white70),
+          )
+        ],
       ),
     );
   }
