@@ -15,8 +15,7 @@ class _TraineeSubscriptionState extends State<TraineeSubscription> {
 
     return Scaffold(
       backgroundColor: Color(0x0096a7af),
-      body: SafeArea(
-          child: Container(
+      body: Container(
         decoration: new BoxDecoration(
           gradient: new LinearGradient(
             colors: [
@@ -63,7 +62,7 @@ class _TraineeSubscriptionState extends State<TraineeSubscription> {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }

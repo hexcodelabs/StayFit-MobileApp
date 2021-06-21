@@ -35,10 +35,10 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
           highlightColor: Colors.transparent,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(0.0),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: Colors.black.withOpacity(0.4),

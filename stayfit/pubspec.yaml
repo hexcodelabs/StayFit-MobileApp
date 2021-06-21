@@ -51,12 +51,7 @@ flutter:
     - assets/icons/NavBar_trainer/
     - assets/icons/NavBar_trainee/
 
-    - assets/images/gym_colombo.jpg
-    - assets/images/card_anim_1.png
-    - assets/images/card_anim_2.png
-    - assets/images/card_anim_3.png
-    - assets/images/instructor.png
-    - assets/images/free_delivery.svg
+    - assets/images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
