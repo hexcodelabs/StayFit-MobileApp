@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: (gymUser) ? GYMHomePage() : BottomNavbarTrainee(),
+
     );
   }
 }
