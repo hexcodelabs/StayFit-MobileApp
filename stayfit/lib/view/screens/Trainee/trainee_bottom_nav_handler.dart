@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
-import 'package:stayfit/view/screens/Trainee/trainee_home.dart';
-import 'package:stayfit/view/screens/Trainee/trainee_subscription.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_home_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
-class BottomNavbarTrainee extends StatefulWidget {
+class TraineeBottomNavHandler extends StatefulWidget {
   @override
-  _BottomNavbarTraineeState createState() => _BottomNavbarTraineeState();
+  _TraineeBottomNavHandlerState createState() =>
+      _TraineeBottomNavHandlerState();
 }
 
-class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
+class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
   var bottomBarIndex = 0;
 
   @override
@@ -21,8 +22,8 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      TraineeSubscription(),
-      TraineeHome(),
+      TraineeFavouritesPage(),
+      TraineeHomePage(),
       ThirdPage(),
     ];
 

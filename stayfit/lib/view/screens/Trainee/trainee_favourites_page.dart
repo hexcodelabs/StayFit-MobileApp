@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
-class TraineeSubscription extends StatefulWidget {
+class TraineeFavouritesPage extends StatefulWidget {
   @override
-  _TraineeSubscriptionState createState() => _TraineeSubscriptionState();
+  _TraineeFavouritesPageState createState() => _TraineeFavouritesPageState();
 }
 
-class _TraineeSubscriptionState extends State<TraineeSubscription> {
+class _TraineeFavouritesPageState extends State<TraineeFavouritesPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
