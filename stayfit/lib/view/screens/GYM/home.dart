@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/utils/colors.dart';
 import 'package:stayfit/view/screens/GYM/gym_sessions_page.dart';
-import 'package:stayfit/view/widgets/drawer.dart';
+import 'package:stayfit/view/screens/GYM/drawer.dart';
 
 class GYMHomePage extends StatefulWidget {
   @override
