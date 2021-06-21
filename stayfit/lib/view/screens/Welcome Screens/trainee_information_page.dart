@@ -9,6 +9,7 @@ import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import 'package:stayfit/view/widgets/type_container.dart';
 import '../../../utils/color.dart';
 
 class TraineeInformationScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
   String countryDropdownValue = "Sri Lanka";
   String languageDropdownValue = "Sinhala";
   DateTime birthday = DateTime(2000);
+  List<String> languageList = [];
 
   Future<Null> selectDate(BuildContext context) async {
     DatePicker.showDatePicker(
@@ -183,7 +185,6 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
                     prefixBoxColor: darkYellow,
@@ -225,49 +226,6 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.phone,
-                    height: height,
-                    width: width - 60,
-                    prefixBoxColor: darkYellow,
-                    prefixIcon: Icon(
-                      Icons.language_rounded,
-                      color: lightYellow,
-                    ),
-                    dropDown: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        DropdownButton<String>(
-                          underline: SizedBox(),
-                          value: languageDropdownValue,
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: textGrey,
-                          ),
-                          style: AppTheme.dropDownTS,
-                          onChanged: (String newValue) {
-                            setState(() {
-                              languageDropdownValue = newValue;
-                            });
-                          },
-                          hint: Text(
-                            "Language",
-                            style: AppTheme.textFieldTS,
-                          ),
-                          items: <String>['Sinhala', 'English']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  CustomTextField(
-                    keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
                     prefixBoxColor: darkYellow,
@@ -305,6 +263,74 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                             );
                           }).toList(),
                         ),
+                      ],
+                    ),
+                  ),
+                  CustomTextField(
+                    height: height,
+                    width: width - 60,
+                    prefixBoxColor: darkYellow,
+                    prefixIcon: Icon(
+                      Icons.language_rounded,
+                      color: lightYellow,
+                    ),
+                    dropDown: Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        DropdownButton<String>(
+                          underline: SizedBox(),
+                          value: languageDropdownValue,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: textGrey,
+                          ),
+                          style: AppTheme.dropDownTS,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              languageDropdownValue = newValue;
+                              !languageList.contains(newValue)
+                                  ? languageList.add(newValue)
+                                  : null;
+                            });
+                          },
+                          hint: Text(
+                            "Language",
+                            style: AppTheme.textFieldTS,
+                          ),
+                          items: <String>[
+                            'Sinhala',
+                            'English',
+                            "Tamil",
+                            "French",
+                            "German"
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    child: Wrap(
+                      runSpacing: 10,
+                      spacing: 10,
+                      children: [
+                        for (var item in languageList)
+                          TypeContainer(
+                            item: item,
+                            containerColor: darkYellow,
+                            onTap: () {
+                              setState(() {
+                                languageList.remove(item);
+                              });
+                            },
+                          ),
                       ],
                     ),
                   ),

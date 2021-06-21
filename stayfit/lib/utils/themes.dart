@@ -105,4 +105,11 @@ class AppTheme {
     fontSize: 14,
     fontFamily: "Gilroy",
   );
+
+  static TextStyle typePickerTS = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Gilroy',
+    fontSize: 14.00,
+    fontWeight: FontWeight.w300,
+  );
 }
