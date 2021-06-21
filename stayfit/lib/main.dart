@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/view/screens/GYM/home.dart';
+import 'package:stayfit/view/widgets/bottom_Navbar_trainer.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GYMHomePage(),
+      home: BottomNavbarTrainer(),
     );
   }
 }
