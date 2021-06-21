@@ -17,54 +17,53 @@ class _TraineeSubscriptionState extends State<TraineeSubscription> {
       backgroundColor: Color(0x0096a7af),
       body: SafeArea(
           child: Container(
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                colors: [
-                  Color.fromRGBO(38, 76, 88, 1),
-                  Color.fromRGBO(34, 52, 60, 1)
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(32, 91, 32, 0),
-              child: Column(
+        decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            colors: [
+              Color.fromRGBO(38, 76, 88, 1),
+              Color.fromRGBO(34, 52, 60, 1)
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(32, 91, 32, 0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Text(
-                          "Subscription",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
+                  Container(
+                    child: Text(
+                      "Subscription",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  subscriptionCardOne("YOGA", "Colombo Gym", "90.00"),
-                  SizedBox(
-                    height: 20,
-                  ),
-//                subscriptionCardTwo("YOGA", "Colombo Gym", "90.00")
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    subscriptionCardTwo("Basics", "Colombo Gym", "90.00"),
-                    subscriptionCardThree("Schedule", "Colombo Gym", "90.00")
-                  ],
-                )
-
                 ],
               ),
-            ),
-          )),
+              SizedBox(
+                height: 14,
+              ),
+              subscriptionCardOne("YOGA", "Colombo Gym", "90.00"),
+              SizedBox(
+                height: 20,
+              ),
+//                subscriptionCardTwo("YOGA", "Colombo Gym", "90.00")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  subscriptionCardTwo("Basics", "Colombo Gym", "90.00"),
+                  subscriptionCardThree("Schedule", "Colombo Gym", "90.00")
+                ],
+              )
+            ],
+          ),
+        ),
+      )),
     );
   }
 }

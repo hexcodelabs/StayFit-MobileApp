@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_home.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_subscription.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
 class BottomNavbarTrainee extends StatefulWidget {
@@ -19,8 +21,8 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      FirstPage(),
-      SecondPage(),
+      TraineeSubscription(),
+      TraineeHome(),
       ThirdPage(),
     ];
 
@@ -53,7 +55,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                   showUnselectedLabels: false,
                   // elevation: 0,
                   type: BottomNavigationBarType.fixed,
-                  backgroundColor: Color(0xff30444E),
+                  backgroundColor: darkGreen,
                   currentIndex: bottomBarIndex,
                   onTap: (index) async {
                     setState(() {
@@ -75,7 +77,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainee/favourite.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),
@@ -109,7 +111,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainee/Home.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),
@@ -143,7 +145,7 @@ class _BottomNavbarTraineeState extends State<BottomNavbarTrainee> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainee/User.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),

@@ -74,7 +74,7 @@ class DrawerMenu extends GetWidget<AuthController> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: transparentWhite10,
+                          color: black,
                         ),
                         child: ListView(
                           children: [
@@ -90,25 +90,25 @@ class DrawerMenu extends GetWidget<AuthController> {
                                 // Get.to(NotificationPage());
                               },
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: Divider(
-                                thickness: 6,
-                                color: backgroundColor,
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(bottom: 5),
+                            //   child: Divider(
+                            //     thickness: 6,
+                            //     color: backgroundColor,
+                            //   ),
+                            // ),
                             DrawerButton(
                               name: "Instructors",
                               icon: Icons.attach_money,
                               onTap: () {},
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: Divider(
-                                thickness: 6,
-                                color: backgroundColor,
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(bottom: 5),
+                            //   child: Divider(
+                            //     thickness: 6,
+                            //     color: backgroundColor,
+                            //   ),
+                            // ),
                             DrawerButton(
                               name: "Settings",
                               icon: Icons.settings,
@@ -172,7 +172,7 @@ class DrawerButton extends StatelessWidget {
           padding: EdgeInsets.only(top: 12, bottom: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: transparentBlack,
+            color: transparentWhite10,
           ),
           child: Row(
             children: [

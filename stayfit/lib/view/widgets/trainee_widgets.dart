@@ -90,48 +90,73 @@ Widget progressCard(String msg) {
   );
 }
 
-Widget gymCard(String name, String tagLine, int likes) {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-    child: Container(
-      height: 265,
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(48, 68, 78, 1),
-          borderRadius: BorderRadius.all(Radius.circular(25))),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 25, 25, 15),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 160,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/gym_colombo.jpg'),
-                      fit: BoxFit.fill,
+Widget gymCard(String name, String tagLine, int likes, Function onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: Container(
+        height: 265,
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(48, 68, 78, 1),
+            borderRadius: BorderRadius.all(Radius.circular(25))),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(25, 25, 25, 15),
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/gym_colombo.jpg'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(25))),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(fontSize: 14, color: Colors.white),
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(name, style: TextStyle(fontSize: 14, color: Colors.white),),
-                  Container(
-                    child: Row(
-                      children: [
-                        FaIcon(FontAwesomeIcons.solidHeart, size: 12, color: Color.fromRGBO(150, 167, 175, 1)),
-                        SizedBox(width: 7,),
-                        Text(likes==1?likes.toString() + " like" : likes.toString() + " likes",  style: TextStyle(fontSize: 14, color: Color.fromRGBO(150, 167, 175, 1)),)
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 10,),
-              Text(tagLine, style: TextStyle(fontSize: 12, color: Color.fromRGBO(150, 167, 175, 1)),)
-            ],
+                    Container(
+                      child: Row(
+                        children: [
+                          FaIcon(FontAwesomeIcons.solidHeart,
+                              size: 12,
+                              color: Color.fromRGBO(150, 167, 175, 1)),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            likes == 1
+                                ? likes.toString() + " like"
+                                : likes.toString() + " likes",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Color.fromRGBO(150, 167, 175, 1)),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  tagLine,
+                  style: TextStyle(
+                      fontSize: 12, color: Color.fromRGBO(150, 167, 175, 1)),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -144,7 +169,6 @@ Widget subscriptionCardOne(String type, String place, String price) {
     height: 180,
     decoration: BoxDecoration(
         color: Color.fromRGBO(255, 86, 94, 1),
-
         borderRadius: BorderRadius.all(Radius.circular(25))),
     child: ClipRRect(
       borderRadius: BorderRadius.circular(25),
@@ -157,8 +181,9 @@ Widget subscriptionCardOne(String type, String place, String price) {
               width: 66,
               height: 66,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(255, 70, 79, 1),
-                  shape: BoxShape.circle,),
+                color: Color.fromRGBO(255, 70, 79, 1),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
@@ -208,108 +233,112 @@ Widget subscriptionCardOne(String type, String place, String price) {
                   borderRadius: BorderRadius.all(Radius.circular(25))),
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(type, style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24
-                  ),),
-                  SizedBox(height: 7,),
-                  Text("By " + place, style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13
-                  ))
-
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("\$"+price.toString(), style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18
-                  ))
-                ],
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      type,
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    SizedBox(
+                      height: 7,
+                    ),
+                    Text("By " + place,
+                        style: TextStyle(color: Colors.white, fontSize: 13))
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("\$" + price.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 18))
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
         ],
       ),
     ),
   );
 }
 
-Widget subscriptionCardTwo(String type, String place, String price){
+Widget subscriptionCardTwo(String type, String place, String price) {
   return Container(
-    width: 160,
-    height: 180, decoration: BoxDecoration(
+      width: 160,
+      height: 180,
+      decoration: BoxDecoration(
           color: Color.fromRGBO(62, 213, 152, 1),
-
           borderRadius: BorderRadius.all(Radius.circular(25))),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 90,
-            left: -18,
-            child: Container(
-              width: 79,
-              height: 105,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/card_anim_2.png'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(25))),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 90,
+              left: -18,
+              child: Container(
+                width: 79,
+                height: 105,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/card_anim_2.png'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(25, 25, 15, 25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+            Padding(
+                padding: const EdgeInsets.fromLTRB(25, 25, 15, 25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        Text(type, style: TextStyle(fontSize: 24, color: Colors.white),),
-                        Container(child: Text("By " + place, style: TextStyle(fontSize: 12, color: Colors.white),))
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              type,
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white),
+                            ),
+                            Container(
+                                child: Text(
+                              "By " + place,
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ))
+                          ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("\$" + price,
+                            style: TextStyle(fontSize: 18, color: Colors.white))
                       ],
                     )
                   ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text("\$" + price, style: TextStyle(fontSize: 18, color: Colors.white))
-                  ],
-
-                )
-              ],
-            )
-          ),
-        ],
-      ),
-    )
-  );
+                )),
+          ],
+        ),
+      ));
 }
 
-Widget subscriptionCardThree(String type, String place, String price){
+Widget subscriptionCardThree(String type, String place, String price) {
   return Container(
       width: 160,
-      height: 180, decoration: BoxDecoration(
-      color: Color.fromRGBO(255, 197, 66, 1),
-
-      borderRadius: BorderRadius.all(Radius.circular(25))),
+      height: 180,
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(255, 197, 66, 1),
+          borderRadius: BorderRadius.all(Radius.circular(25))),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
         child: Stack(
@@ -338,8 +367,17 @@ Widget subscriptionCardThree(String type, String place, String price){
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(type, style: TextStyle(fontSize: 24, color: Colors.white),),
-                            Container(child: Text("By " + place, style: TextStyle(fontSize: 12, color: Colors.white),))
+                            Text(
+                              type,
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white),
+                            ),
+                            Container(
+                                child: Text(
+                              "By " + place,
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ))
                           ],
                         )
                       ],
@@ -347,20 +385,18 @@ Widget subscriptionCardThree(String type, String place, String price){
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("\$" + price, style: TextStyle(fontSize: 18, color: Colors.white))
+                        Text("\$" + price,
+                            style: TextStyle(fontSize: 18, color: Colors.white))
                       ],
-
                     )
                   ],
-                )
-            ),
+                )),
           ],
         ),
-      )
-  );
+      ));
 }
 
-Widget priceCard(String type, String place, String price){
+Widget priceCard(String type, String place, String price) {
   return Container(
     child: Row(
       children: [
@@ -374,16 +410,21 @@ Widget priceCard(String type, String place, String price){
                 fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.all(Radius.circular(25))),
-
         ),
-        SizedBox(width: 18,),
+        SizedBox(
+          width: 18,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(type, style: TextStyle(fontSize: 18, color: Colors.white)),
-            Text("By " + place, style: TextStyle(fontSize: 13, color: Colors.white)),
-            SizedBox(height: 10,),
-            Text("\$"+price, style: TextStyle(fontSize: 18, color: Colors.white))
+            Text("By " + place,
+                style: TextStyle(fontSize: 13, color: Colors.white)),
+            SizedBox(
+              height: 10,
+            ),
+            Text("\$" + price,
+                style: TextStyle(fontSize: 18, color: Colors.white))
           ],
         )
       ],
@@ -391,7 +432,7 @@ Widget priceCard(String type, String place, String price){
   );
 }
 
-Widget totalCard(String price){
+Widget totalCard(String price) {
   return Container(
     child: Row(
       children: [
@@ -402,25 +443,31 @@ Widget totalCard(String price){
               color: Color.fromRGBO(255, 86, 94, 1),
               borderRadius: BorderRadius.all(Radius.circular(12))),
           child: Center(
-            child:  Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                    'assets/images/free_delivery.svg',
-                    height: 15,
-                ),
-                Text("FREE",  style: TextStyle(fontSize: 12, color: Colors.white))
-              ],
-            )
-          ),
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/free_delivery.svg',
+                height: 15,
+              ),
+              Text("FREE", style: TextStyle(fontSize: 12, color: Colors.white))
+            ],
+          )),
         ),
-        SizedBox(width: 56,),
+        SizedBox(
+          width: 56,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Total:", style: TextStyle(fontSize: 18, color: Color.fromRGBO(150, 167, 175, 1))),
-            SizedBox(height: 6,),
-            Text("\$"+price, style: TextStyle(fontSize: 24, color: Colors.white))
+            Text("Total:",
+                style: TextStyle(
+                    fontSize: 18, color: Color.fromRGBO(150, 167, 175, 1))),
+            SizedBox(
+              height: 6,
+            ),
+            Text("\$" + price,
+                style: TextStyle(fontSize: 24, color: Colors.white))
           ],
         )
       ],

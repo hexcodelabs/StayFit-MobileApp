@@ -9,14 +9,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool gymUser = true;
+    bool gymUser = false;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: (gymUser) ? GYMHomePage() : BottomNavbarTrainee(),
-
     );
   }
 }

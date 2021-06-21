@@ -54,7 +54,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                   showUnselectedLabels: false,
                   // elevation: 0,
                   type: BottomNavigationBarType.fixed,
-                  backgroundColor: Color(0xff30444E),
+                  backgroundColor: darkGreen,
                   currentIndex: bottomBarIndex,
                   onTap: (index) async {
                     setState(() {
@@ -76,7 +76,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainer/Home.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),
@@ -94,7 +94,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                           text: "Kalender",
                           size: 12,
                           weight: FontWeight.normal),
-                      backgroundColor: Color(0xff30444E),
+                      backgroundColor: darkGreen,
                     ),
                     BottomNavigationBarItem(
                       activeIcon: Container(
@@ -110,7 +110,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainer/User.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),
@@ -144,7 +144,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainer/Instructors.svg",
-                                color: black,
+                                color: darkGreen,
                                 height: 22,
                                 width: 22,
                               ),
@@ -182,7 +182,7 @@ class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
                               width: 25,
                               child: SvgPicture.asset(
                                 "assets/icons/NavBar_trainer/Notification.svg",
-                                color: black,
+                                color: darkGreen,
                               ),
                             )),
                       ),
