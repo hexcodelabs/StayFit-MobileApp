@@ -91,4 +91,18 @@ class AppTheme {
     height: 2,
     fontFamily: "Gilroy",
   );
+
+  static TextStyle datePickerCancelTS = const TextStyle(
+    color: mainRed,
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    fontFamily: "Gilroy",
+  );
+
+  static TextStyle datePickerDoneTS = const TextStyle(
+    color: mainGreen,
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    fontFamily: "Gilroy",
+  );
 }

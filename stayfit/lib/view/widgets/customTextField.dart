@@ -16,6 +16,8 @@ class CustomTextField extends StatelessWidget {
     this.phoneNumberPrefix,
     this.keyboardType = TextInputType.text,
     this.dropDown,
+    this.readOnly = false,
+    this.onTap,
   }) : super(key: key);
 
   final double height;
@@ -29,6 +31,8 @@ class CustomTextField extends StatelessWidget {
   final Widget phoneNumberPrefix;
   final TextInputType keyboardType;
   final Widget dropDown;
+  final bool readOnly;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +42,12 @@ class CustomTextField extends StatelessWidget {
         width: width,
         height: 54,
         child: TextField(
+          onTap: onTap,
           style: AppTheme.textFieldTS,
           controller: controller,
           obscureText: obscureText,
           keyboardType: keyboardType,
-          readOnly: dropDown != null ? true : false,
+          readOnly: dropDown != null ? true : readOnly,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,
