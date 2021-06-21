@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomContainer(
                 width: 50,
                 height: 50,
-                boxColor: AppTheme.mainGreen,
+                boxColor: mainGreen,
                 radius: 12,
               ),
               SizedBox(
@@ -69,8 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.white,
                   height: 15,
                 ),
-                boxColor: AppTheme.mainGreen,
-                shadowColor: AppTheme.mainGreen,
+                boxColor: mainGreen,
+                shadowColor: mainGreen,
               ),
               SizedBox(
                 height: 10,

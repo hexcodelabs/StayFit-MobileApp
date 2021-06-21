@@ -7,6 +7,7 @@ import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/user_selection_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({Key key}) : super(key: key);
@@ -40,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       body: SafeArea(
         child: Stack(
           children: [
@@ -89,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et doloreLorem ipsum dolor sit ame",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: AppTheme.textGrey,
+                                  color: textGrey,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 14,
                                   height: 2,
@@ -130,7 +131,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et doloreLorem ipsum dolor sit ame",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: AppTheme.textGrey,
+                                  color: textGrey,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 14,
                                   height: 2,
@@ -171,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et doloreLorem ipsum dolor sit ame",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: AppTheme.textGrey,
+                                  color: textGrey,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 14,
                                   height: 2,
@@ -262,8 +263,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         },
                         text: "Next",
                         suffixIcon: SvgPicture.asset("assets/images/next.svg"),
-                        boxColor: AppTheme.mainGreen,
-                        shadowColor: AppTheme.mainGreen,
+                        boxColor: mainGreen,
+                        shadowColor: mainGreen,
                       ),
                     ],
                   ),

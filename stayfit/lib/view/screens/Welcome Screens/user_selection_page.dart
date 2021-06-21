@@ -7,6 +7,7 @@ import 'package:stayfit/view/screens/Welcome%20Screens/gym_information_page.dart
 import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class UserSelectionScreen extends StatefulWidget {
   UserSelectionScreen({Key key}) : super(key: key);
@@ -29,7 +30,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
@@ -40,7 +41,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
               CustomContainer(
                 width: 50,
                 height: 50,
-                boxColor: AppTheme.mainGreen,
+                boxColor: mainGreen,
                 radius: 12,
               ),
               SizedBox(
@@ -69,7 +70,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                     child: CustomContainer(
                       width: width * 0.4,
                       height: width * 0.5,
-                      boxColor: AppTheme.mainRed,
+                      boxColor: mainRed,
                       radius: 12,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +104,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                     child: CustomContainer(
                       width: width * 0.4,
                       height: width * 0.5,
-                      boxColor: AppTheme.mainGreen,
+                      boxColor: mainGreen,
                       radius: 12,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -7,6 +7,7 @@ import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class GymInformationScreen extends StatefulWidget {
   GymInformationScreen({Key key}) : super(key: key);
@@ -37,7 +38,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 0),
         child: MainButton(
@@ -53,8 +54,8 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
-          boxColor: AppTheme.mainGreen,
-          shadowColor: AppTheme.mainGreen,
+          boxColor: mainGreen,
+          shadowColor: mainGreen,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -71,7 +72,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                   CustomContainer(
                     width: 50,
                     height: 50,
-                    boxColor: AppTheme.mainGreen,
+                    boxColor: mainGreen,
                     radius: 12,
                   ),
                   SizedBox(
@@ -93,10 +94,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     width: width - 60,
                     controller: nameController,
                     hintText: "Name",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.person,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -104,10 +105,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     width: width - 60,
                     controller: adminController,
                     hintText: "Admin",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.admin_panel_settings,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -115,10 +116,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     width: width - 60,
                     controller: gmailController,
                     hintText: "E-mail",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.mail_rounded,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -126,10 +127,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     width: width - 60,
                     controller: addressController,
                     hintText: "Address",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.location_pin,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -138,10 +139,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     width: width - 60,
                     controller: phoneNumberController,
                     hintText: "Phone number",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.phone_rounded,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                     phoneNumberPrefix: Row(
                       children: [
@@ -153,7 +154,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                           value: dropdownValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                           ),
                           style: AppTheme.dropDownTS,
                           onChanged: (String newValue) {
@@ -173,7 +174,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                           margin:
                               const EdgeInsets.only(top: 13.0, bottom: 13.0),
                           child: VerticalDivider(
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                             width: 1,
                           ),
                         ),
@@ -184,10 +185,10 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.add_circle_rounded,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                     dropDown: Row(
                       children: [
@@ -199,7 +200,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                           value: typeValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                           ),
                           style: AppTheme.dropDownTS,
                           onChanged: (String newValue) {

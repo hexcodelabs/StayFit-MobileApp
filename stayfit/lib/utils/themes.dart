@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'color.dart';
 
 class AppTheme {
   static ThemeData appTheme = ThemeData(
@@ -11,20 +12,6 @@ class AppTheme {
     fontFamily: 'Gilroy',
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
-
-  //Colors
-  static const Color mainGreen = Color(0xFF40DF9F);
-  static const Color mainRed = Color(0xFFFF535B);
-  static const Color backgroundGrey = Color(0xFF264E5A);
-  static const Color darkgrey = Color(0xFF040405);
-
-  static const Color darkYellow = Color(0xFF625B39);
-  static const Color darkRed = Color(0xFF623A42);
-  static const Color lightYellow = Color(0xFFFFC542);
-  static const Color lightRed = Color(0xFFFF575F);
-  static const Color textGrey = Color(0xFF96A7AF);
-  static const Color darkGreen = Color(0xFF286053);
-  static const Color lightGreen = Color(0xFF3DD598);
 
   //Text Styles
   static TextStyle topicTS = const TextStyle(
@@ -84,7 +71,7 @@ class AppTheme {
   );
 
   static TextStyle dropDownTS = const TextStyle(
-    color: AppTheme.textGrey,
+    color: textGrey,
     fontFamily: 'Gilroy',
     fontSize: 18,
     fontWeight: FontWeight.normal,

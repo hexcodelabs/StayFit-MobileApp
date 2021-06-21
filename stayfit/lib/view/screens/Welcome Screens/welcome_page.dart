@@ -6,6 +6,7 @@ import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/onbording_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class WelcomeScreen extends StatefulWidget {
   WelcomeScreen({Key key}) : super(key: key);
@@ -28,7 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50),
         child: MainButton(
@@ -44,8 +45,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
-          boxColor: AppTheme.mainGreen,
-          shadowColor: AppTheme.mainGreen,
+          boxColor: mainGreen,
+          shadowColor: mainGreen,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -59,7 +60,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               CustomContainer(
                 width: 50,
                 height: 50,
-                boxColor: AppTheme.mainGreen,
+                boxColor: mainGreen,
                 radius: 12,
               ),
               SizedBox(

@@ -7,6 +7,7 @@ import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import '../../../utils/color.dart';
 
 class TraineeInformationScreen extends StatefulWidget {
   TraineeInformationScreen({Key key}) : super(key: key);
@@ -37,7 +38,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGrey,
+      backgroundColor: backgroundGrey,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 0),
         child: MainButton(
@@ -53,8 +54,8 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
-          boxColor: AppTheme.mainGreen,
-          shadowColor: AppTheme.mainGreen,
+          boxColor: mainGreen,
+          shadowColor: mainGreen,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -71,7 +72,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                   CustomContainer(
                     width: 50,
                     height: 50,
-                    boxColor: AppTheme.mainGreen,
+                    boxColor: mainGreen,
                     radius: 12,
                   ),
                   SizedBox(
@@ -93,10 +94,10 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     width: width - 60,
                     controller: nameController,
                     hintText: "Name",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.person,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -104,10 +105,10 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     width: width - 60,
                     controller: gmailController,
                     hintText: "E-mail",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.mail_rounded,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
@@ -116,20 +117,20 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     width: width - 60,
                     controller: birthdayController,
                     hintText: "Birthday",
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.date_range,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.people_alt_sharp,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                     dropDown: Row(
                       children: [
@@ -141,7 +142,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                           value: genderDropdownValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                           ),
                           style: AppTheme.dropDownTS,
                           onChanged: (String newValue) {
@@ -168,10 +169,10 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.language_rounded,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                     dropDown: Row(
                       children: [
@@ -183,7 +184,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                           value: languageDropdownValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                           ),
                           style: AppTheme.dropDownTS,
                           onChanged: (String newValue) {
@@ -210,10 +211,10 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
-                    prefixBoxColor: AppTheme.darkYellow,
+                    prefixBoxColor: darkYellow,
                     prefixIcon: Icon(
                       Icons.location_pin,
-                      color: AppTheme.lightYellow,
+                      color: lightYellow,
                     ),
                     dropDown: Row(
                       children: [
@@ -225,7 +226,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                           value: countryDropdownValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: AppTheme.textGrey,
+                            color: textGrey,
                           ),
                           style: AppTheme.dropDownTS,
                           onChanged: (String newValue) {
