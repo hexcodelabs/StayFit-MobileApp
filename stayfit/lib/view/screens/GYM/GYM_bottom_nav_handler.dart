@@ -3,12 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
-class BottomNavbarTrainer extends StatefulWidget {
+class GYMBottomNavHandler extends StatefulWidget {
   @override
-  _BottomNavbarTrainerState createState() => _BottomNavbarTrainerState();
+  _GYMBottomNavHandlerState createState() => _GYMBottomNavHandlerState();
 }
 
-class _BottomNavbarTrainerState extends State<BottomNavbarTrainer> {
+class _GYMBottomNavHandlerState extends State<GYMBottomNavHandler> {
   var bottomBarIndex = 0;
 
   @override

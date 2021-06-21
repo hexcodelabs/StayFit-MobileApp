@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/utils/colors.dart';
-import 'package:stayfit/view/screens/GYM/bottom_Navbar_trainer.dart';
+import 'package:stayfit/view/screens/GYM/GYM_bottom_nav_handler.dart';
 
-class GYMSessionsPage extends StatelessWidget {
+class GYMMain extends StatelessWidget {
   final Color backgroundColor;
   final bool isCollapsed;
   final double screenWidth;
@@ -11,7 +11,7 @@ class GYMSessionsPage extends StatelessWidget {
   final Animation scaleAnimation;
   final Duration duration;
 
-  const GYMSessionsPage({
+  const GYMMain({
     @required this.backgroundColor,
     @required this.isCollapsed,
     @required this.screenWidth,
@@ -51,7 +51,7 @@ class GYMSessionsPage extends StatelessWidget {
                       bottomLeft: Radius.circular(10),
                       bottomRight: Radius.circular(10),
                     ),
-                    child: BottomNavbarTrainer(),
+                    child: GYMBottomNavHandler(),
                   ),
                 ),
               ],

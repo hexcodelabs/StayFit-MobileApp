@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/utils/colors.dart';
-import 'package:stayfit/view/screens/GYM/gym_sessions_page.dart';
+import 'package:stayfit/view/screens/GYM/GYM_main.dart';
 import 'package:stayfit/view/screens/GYM/drawer.dart';
 
-class GYMHomePage extends StatefulWidget {
+class GYMDrawerHandler extends StatefulWidget {
   @override
-  _GYMHomePageState createState() => _GYMHomePageState();
+  _GYMDrawerHandlerState createState() => _GYMDrawerHandlerState();
 }
 
-class _GYMHomePageState extends State<GYMHomePage>
+class _GYMDrawerHandlerState extends State<GYMDrawerHandler>
     with SingleTickerProviderStateMixin {
   bool isCollapsed = true;
   double screenWidth, screenHeight;
@@ -49,7 +49,7 @@ class _GYMHomePageState extends State<GYMHomePage>
             screenHeight: screenHeight,
             slideAnimation: _slideAnimation,
           ),
-          GYMSessionsPage(
+          GYMMain(
               backgroundColor: backgroundColor,
               isCollapsed: isCollapsed,
               screenWidth: screenWidth,
