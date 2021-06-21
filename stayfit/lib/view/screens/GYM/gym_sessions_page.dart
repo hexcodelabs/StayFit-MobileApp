@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/GYM/bottom_Navbar_trainer.dart';
 
 class GYMSessionsPage extends StatelessWidget {
   final Color backgroundColor;
@@ -37,7 +38,7 @@ class GYMSessionsPage extends StatelessWidget {
           elevation: 8,
           color: green80,
           child: Container(
-            padding: const EdgeInsets.only(left: 12, right: 12, top: 32),
+            padding: const EdgeInsets.only(left: 0, right: 0, top: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -46,12 +47,11 @@ class GYMSessionsPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      child: ListView(
-                        children: [],
-                      ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
+                    child: BottomNavbarTrainer(),
                   ),
                 ),
               ],
