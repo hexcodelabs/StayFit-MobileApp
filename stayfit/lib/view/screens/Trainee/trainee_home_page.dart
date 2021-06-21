@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_checkout_page.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_gym_selection_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
@@ -32,7 +33,7 @@ class _TraineeHomePageState extends State<TraineeHomePage> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 91, 32, 0),
+          padding: const EdgeInsets.fromLTRB(32, 60, 32, 0),
           child: Column(
             children: [
               Row(
@@ -98,7 +99,7 @@ class _TraineeHomePageState extends State<TraineeHomePage> {
                               "Colombo Gym", "Weekly progress on dieting", 23,
                               () {
                             Navigator.of(context)
-                                .push(pageRoute(TraineeCheckoutPage()));
+                                .push(pageRoute(GymSelectPage()));//!TODO -> pass the same gym name here or a key to fetch classes
                           });
 //                  return progressCard("It looks like you are on track. Please continue to follow the daily plan.");
                         })),
