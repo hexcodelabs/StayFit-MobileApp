@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_checkout.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_home.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_subscription.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: TraineeCheckout(),
     );
   }
 }
