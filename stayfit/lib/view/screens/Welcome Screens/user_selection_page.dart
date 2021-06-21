@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/gym_information_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import '../../../utils/color.dart';
@@ -60,8 +61,9 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              TraineeInformationScreen(),
+                          builder: (BuildContext context) => LoginScreen(
+                            userType: "Trainee",
+                          ),
                         ),
                       );
                     },
@@ -94,8 +96,9 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              GymInformationScreen(),
+                          builder: (BuildContext context) => LoginScreen(
+                            userType: "GYM",
+                          ),
                         ),
                       );
                     },

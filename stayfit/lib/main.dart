@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
-      home: (gymUser) ? GYMDrawerHandler() : TraineeBottomNavHandler(),
+      // home: (gymUser) ? GYMDrawerHandler() : TraineeBottomNavHandler(),
+      home: WelcomeScreen(),
     );
   }
 }

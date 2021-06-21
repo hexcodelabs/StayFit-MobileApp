@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stayfit/utils/themes.dart';
+import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
@@ -48,8 +50,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => LoginScreen(),
-              ),
+                  builder: (BuildContext context) => GYMDrawerHandler()),
             );
           },
           text: "Next",

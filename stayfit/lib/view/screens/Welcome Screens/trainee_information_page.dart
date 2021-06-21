@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/themes.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
@@ -48,7 +49,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => LoginScreen(),
+                builder: (BuildContext context) => TraineeBottomNavHandler(),
               ),
             );
           },
