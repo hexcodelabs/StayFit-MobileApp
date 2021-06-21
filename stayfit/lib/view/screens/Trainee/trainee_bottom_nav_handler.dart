@@ -40,17 +40,17 @@ class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: Colors.black.withOpacity(0.4),
                     blurRadius: 50,
-                    offset: Offset(0, -15),
+                    offset: Offset(0, -25),
                   ),
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 child: BottomNavigationBar(
                   showSelectedLabels: false,
                   showUnselectedLabels: false,

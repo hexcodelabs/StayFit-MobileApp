@@ -48,7 +48,7 @@ class PageViewContainer extends StatelessWidget {
               height: 30,
             ),
             Text(
-              topic,
+              topic==null?"":topic,
               textAlign: TextAlign.center,
               maxLines: 1,
               style: topicTS,
@@ -57,7 +57,7 @@ class PageViewContainer extends StatelessWidget {
               height: 15,
             ),
             Text(
-              description,
+              description==null?"":description,
               textAlign: TextAlign.center,
               style: descriptionTS,
             ),
