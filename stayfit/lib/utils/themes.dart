@@ -76,4 +76,19 @@ class AppTheme {
     fontSize: 18,
     fontWeight: FontWeight.normal,
   );
+
+  static TextStyle onBoardPageTopicTS = const TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w800,
+    fontSize: 20,
+    fontFamily: "Gilroy",
+  );
+
+  static TextStyle onBoardPageDescriptionTS = const TextStyle(
+    color: textGrey,
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    height: 2,
+    fontFamily: "Gilroy",
+  );
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/themes.dart';
-import 'package:stayfit/view/screens/Welcome%20Screens/onbording_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/onbording_page%20.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
 import '../../../utils/color.dart';

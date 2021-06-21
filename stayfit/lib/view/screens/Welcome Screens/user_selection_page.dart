@@ -6,7 +6,6 @@ import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/gym_information_page.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
-import 'package:stayfit/view/widgets/mainButton.dart';
 import '../../../utils/color.dart';
 
 class UserSelectionScreen extends StatefulWidget {
@@ -27,7 +26,6 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: backgroundGrey,
