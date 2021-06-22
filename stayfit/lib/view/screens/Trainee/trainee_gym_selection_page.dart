@@ -36,9 +36,9 @@ class _GymSelectPageState extends State<GymSelectPage> {
   }
 
   List<List<String>> _gymClasses = [
-    ["assets/images/p5.png","YOGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
-    ["assets/images/p4.png","POGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
-    ["assets/images/p3.PNG","GOGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
+    ["assets/images/p5.png","YOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p4.png","POGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p3.PNG","GOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
   ];
 
   @override

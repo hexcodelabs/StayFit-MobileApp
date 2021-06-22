@@ -24,10 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^3.17.1
-  firebase_auth: ^0.18.3
   font_awesome_flutter: ^9.1.0
   flutter_svg: ^0.22.0
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.0.3
+  firebase_auth: ^1.0.3
+  firebase_storage: any
+  cloud_firestore: ^1.0.4
 
 dev_dependencies:
   flutter_test:
