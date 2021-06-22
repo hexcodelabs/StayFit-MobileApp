@@ -36,9 +36,9 @@ class _GymSelectPageState extends State<GymSelectPage> {
   }
 
   List<List<String>> _gymClasses = [
-    ["assets/images/p5.png","YOGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
-    ["assets/images/p4.png","POGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
-    ["assets/images/p3.PNG","GOGA", "May 21st ","1.00 pm - 2.00 pm", "Key"],
+    ["assets/images/p5.png","YOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p4.png","POGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p3.PNG","GOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
   ];
 
   @override
@@ -49,63 +49,61 @@ class _GymSelectPageState extends State<GymSelectPage> {
     return Scaffold(
       backgroundColor: backgroundGrey,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(32, 40, 32, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      gymName,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 40, 32, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    gymName,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CustomContainer(
+                      width: 50,
+                      height: 50,
+                      boxColor: mainGreen,
+                      radius: 12,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: CustomContainer(
-                        width: 50,
-                        height: 50,
-                        boxColor: mainGreen,
-                        radius: 12,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Container(
-                height: height,
-                child: PageView(
-                  controller: pageController,
-                  reverse: false,
-                  physics: BouncingScrollPhysics(),
-                  onPageChanged: (int index) {
-                    setState(() {
-                      check = index;
-                    });
-                  },
-                  children: _gymClasses.map<Widget>(
-                    (event) => GymViewContainer(
-                      height: height * 0.76,
-                      width: width * 0.75,
-                      imageBoxColor: mainGreen,
-                      topic: event[1],
-                      image: event[0],
-                      day:event[2],
-                      time:event[3],
-                      topicTS: AppTheme.onBoardPageTopicTS,
-                      descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                    ),
-                  ).toList(),
-                ),
+            ),
+            Container(
+              height: height*0.8,
+              child: PageView(
+                controller: pageController,
+                reverse: false,
+                physics: BouncingScrollPhysics(),
+                onPageChanged: (int index) {
+                  setState(() {
+                    check = index;
+                  });
+                },
+                children: _gymClasses.map<Widget>(
+                  (event) => GymViewContainer(
+                    height: height * 0.76,
+                    width: width * 0.75,
+                    imageBoxColor: mainGreen,
+                    topic: event[1],
+                    image: event[0],
+                    day:event[2],
+                    time:event[3],
+                    topicTS: AppTheme.onBoardPageTopicTS,
+                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
+                  ),
+                ).toList(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

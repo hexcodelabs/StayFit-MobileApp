@@ -23,7 +23,7 @@ class AppTheme {
 
   static TextStyle subTopicTS = const TextStyle(
     color: textGrey,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
@@ -37,14 +37,14 @@ class AppTheme {
 
   static TextStyle subTitleTS = const TextStyle(
     color: textGrey,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
 
   static TextStyle subTitleGreenTS = const TextStyle(
     color: mainGreen,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
