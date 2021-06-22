@@ -10,9 +10,11 @@ import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import 'package:stayfit/view/widgets/type_container.dart';
 import '../../../utils/color.dart';
 
 class GymInformationScreen extends StatefulWidget {
@@ -28,10 +30,14 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
   TextEditingController gmailController = new TextEditingController();
   TextEditingController addressController = new TextEditingController();
   TextEditingController phoneNumberController = new TextEditingController();
+  TextEditingController typeController = new TextEditingController();
   String dropdownValue = "+94";
   String typeValue = "Yoga";
+
   var providerAuth;
   var providerDatabase;
+  List<String> typeList = [];
+
 
   @override
   void initState() {
@@ -41,6 +47,12 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
 
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    nameController.text = "";
+    adminController = new TextEditingController();
+    gmailController.text = "";
+    addressController.text = "";
+    phoneNumberController.text = "";
+    typeController.text = "";
   }
 
   @override
@@ -209,7 +221,21 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.phone,
+                    suffix: IconButton(
+                      icon: Icon(
+                        Icons.send_outlined,
+                        color: lightYellow,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          String type = typeController.text;
+                          debugPrint(type);
+                          typeController.text = "";
+                          !typeList.contains(type) ? typeList.add(type) : null;
+                        });
+                      },
+                    ),
+                    controller: typeController,
                     height: height,
                     width: width - 60,
                     prefixBoxColor: darkYellow,
@@ -217,36 +243,24 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
                       Icons.add_circle_rounded,
                       color: lightYellow,
                     ),
-                    dropDown: Row(
+                    hintText: "Type",
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    child: Wrap(
+                      runSpacing: 10,
+                      spacing: 10,
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        DropdownButton<String>(
-                          underline: SizedBox(),
-                          value: typeValue,
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: textGrey,
+                        for (var item in typeList)
+                          TypeContainer(
+                            containerColor: darkYellow,
+                            item: item,
+                            onTap: () {
+                              setState(() {
+                                typeList.remove(item);
+                              });
+                            },
                           ),
-                          style: AppTheme.dropDownTS,
-                          onChanged: (String newValue) {
-                            setState(() {
-                              typeValue = newValue;
-                            });
-                          },
-                          hint: Text(
-                            "Type",
-                            style: AppTheme.textFieldTS,
-                          ),
-                          items: <String>['Yoga', 'Exercises f fd gdf g dfg']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
                       ],
                     ),
                   ),

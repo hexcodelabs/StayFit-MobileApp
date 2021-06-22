@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                   children: [
                     PageViewContainer(
-                      height: height * 0.56,
+                      height: height * 0.45,
                       width: width * 0.7,
                       imageBoxColor: mainGreen,
                       image: "assets/images/p1.PNG",
@@ -69,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       descriptionTS: AppTheme.onBoardPageDescriptionTS,
                     ),
                     PageViewContainer(
-                      height: height * 0.56,
+                      height: height * 0.45,
                       width: width * 0.7,
                       imageBoxColor: mainGreen,
                       image: "assets/images/p3.PNG",
@@ -80,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       descriptionTS: AppTheme.onBoardPageDescriptionTS,
                     ),
                     PageViewContainer(
-                      height: height * 0.56,
+                      height: height * 0.45,
                       width: width * 0.7,
                       imageBoxColor: mainGreen,
                       image: "assets/images/p2.PNG",

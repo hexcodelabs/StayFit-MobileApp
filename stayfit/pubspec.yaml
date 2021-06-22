@@ -34,6 +34,7 @@ dependencies:
   overlay_support: ^1.2.1
   provider: ^5.0.0
   google_sign_in: ^5.0.4
+  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   flutter_test:
