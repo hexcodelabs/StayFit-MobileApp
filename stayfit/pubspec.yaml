@@ -24,10 +24,17 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^3.17.1
-  firebase_auth: ^0.18.3
   font_awesome_flutter: ^9.1.0
   flutter_svg: ^0.22.0
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.0.3
+  firebase_auth: ^1.0.3
+  firebase_storage: any
+  cloud_firestore: ^1.0.4
+  overlay_support: ^1.2.1
+  provider: ^5.0.0
+  google_sign_in: ^5.0.4
+  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
+import 'package:stayfit/view/widgets/gymview_container.dart';
+import 'package:stayfit/view/widgets/shared_widgets.dart';
 import '../../../utils/color.dart';
 import '../../widgets/pageview_container.dart';
 
@@ -33,6 +35,12 @@ class _GymSelectPageState extends State<GymSelectPage> {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
+  List<List<String>> _gymClasses = [
+    ["assets/images/p5.png","YOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p4.png","POGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+    ["assets/images/p3.PNG","GOGA", "May 21st ","1.00 pm - 2.00 pm", "GymID"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -55,17 +63,22 @@ class _GymSelectPageState extends State<GymSelectPage> {
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
-                  CustomContainer(
-                    width: 50,
-                    height: 50,
-                    boxColor: mainGreen,
-                    radius: 12,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CustomContainer(
+                      width: 50,
+                      height: 50,
+                      boxColor: mainGreen,
+                      radius: 12,
+                    ),
                   ),
                 ],
               ),
             ),
             Container(
-              height: height,
+              height: height*0.8,
               child: PageView(
                 controller: pageController,
                 reverse: false,
@@ -75,32 +88,19 @@ class _GymSelectPageState extends State<GymSelectPage> {
                     check = index;
                   });
                 },
-                children: [
-                  PageViewContainer(
+                children: _gymClasses.map<Widget>(
+                  (event) => GymViewContainer(
                     height: height * 0.76,
                     width: width * 0.75,
                     imageBoxColor: mainGreen,
-                    image: "assets/images/p4.png",
+                    topic: event[1],
+                    image: event[0],
+                    day:event[2],
+                    time:event[3],
                     topicTS: AppTheme.onBoardPageTopicTS,
                     descriptionTS: AppTheme.onBoardPageDescriptionTS,
                   ),
-                  PageViewContainer(
-                    height: height * 0.76,
-                    width: width * 0.75,
-                    imageBoxColor: mainGreen,
-                    image: "assets/images/p5.png",
-                    topicTS: AppTheme.onBoardPageTopicTS,
-                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                  ),
-                  PageViewContainer(
-                    height: height * 0.76,
-                    width: width * 0.75,
-                    imageBoxColor: mainGreen,
-                    image: "assets/images/p2.PNG",
-                    topicTS: AppTheme.onBoardPageTopicTS,
-                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                  ),
-                ],
+                ).toList(),
               ),
             ),
           ],

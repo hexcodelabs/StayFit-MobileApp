@@ -23,7 +23,7 @@ class AppTheme {
 
   static TextStyle subTopicTS = const TextStyle(
     color: textGrey,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
@@ -37,14 +37,14 @@ class AppTheme {
 
   static TextStyle subTitleTS = const TextStyle(
     color: textGrey,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
 
   static TextStyle subTitleGreenTS = const TextStyle(
     color: mainGreen,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
     fontFamily: 'Gilroy',
   );
@@ -90,5 +90,26 @@ class AppTheme {
     fontSize: 14,
     height: 2,
     fontFamily: "Gilroy",
+  );
+
+  static TextStyle datePickerCancelTS = const TextStyle(
+    color: mainRed,
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    fontFamily: "Gilroy",
+  );
+
+  static TextStyle datePickerDoneTS = const TextStyle(
+    color: mainGreen,
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    fontFamily: "Gilroy",
+  );
+
+  static TextStyle typePickerTS = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Gilroy',
+    fontSize: 14.00,
+    fontWeight: FontWeight.w300,
   );
 }

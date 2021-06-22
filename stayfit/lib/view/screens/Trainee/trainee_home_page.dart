@@ -99,7 +99,7 @@ class _TraineeHomePageState extends State<TraineeHomePage> {
                               "Colombo Gym", "Weekly progress on dieting", 23,
                               () {
                             Navigator.of(context)
-                                .push(pageRoute(GymSelectPage()));//!TODO -> pass the same gym name here
+                                .push(pageRoute(GymSelectPage()));//!TODO -> pass the same gym name here or a key to fetch classes
                           });
 //                  return progressCard("It looks like you are on track. Please continue to follow the daily plan.");
                         })),

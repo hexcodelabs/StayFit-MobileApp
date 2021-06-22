@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
+import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
+import 'package:stayfit/view/widgets/type_container.dart';
 import '../../../utils/color.dart';
 
 class TraineeInformationScreen extends StatefulWidget {
@@ -26,11 +32,74 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
   String countryDropdownValue = "Sri Lanka";
   String languageDropdownValue = "Sinhala";
 
+  var providerAuth;
+  var providerDatabase;
+
+  DateTime birthday = DateTime(2000);
+  List<String> languageList = [];
+
+  Future<Null> selectDate(BuildContext context) async {
+    DatePicker.showDatePicker(
+      context,
+      showTitleActions: true,
+      minTime: DateTime(1970),
+      maxTime: DateTime.now(),
+      onChanged: (date) {
+        setState(() {
+          birthday = date;
+          birthdayController.text = date.year.toString() +
+              " - " +
+              (int.parse(date.month.toString()) < 10
+                  ? ("0" + date.month.toString())
+                  : date.month.toString()) +
+              " - " +
+              (int.parse(date.day.toString()) < 10
+                  ? ("0" + date.day.toString())
+                  : date.day.toString());
+        });
+      },
+      theme: DatePickerTheme(
+        cancelStyle: AppTheme.datePickerCancelTS,
+        doneStyle: AppTheme.datePickerDoneTS,
+      ),
+      onConfirm: (date) {
+        setState(() {
+          birthday = date;
+          birthdayController.text = date.year.toString() +
+              " - " +
+              (int.parse(date.month.toString()) < 10
+                  ? ("0" + date.month.toString())
+                  : date.month.toString()) +
+              " - " +
+              (int.parse(date.day.toString()) < 10
+                  ? ("0" + date.day.toString())
+                  : date.day.toString());
+        });
+      },
+      currentTime: birthday,
+      locale: LocaleType.en,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+
+    providerAuth = Provider.of<AuthFunctions>(context, listen: false);
+    providerDatabase = Provider.of<Database>(context, listen: false);
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
+    birthdayController.text = birthday.year.toString() +
+        " - " +
+        (int.parse(birthday.month.toString()) < 10
+            ? ("0" + birthday.month.toString())
+            : birthday.month.toString()) +
+        " - " +
+        (int.parse(birthday.day.toString()) < 10
+            ? ("0" + birthday.day.toString())
+            : birthday.day.toString());
   }
 
   @override
@@ -45,13 +114,31 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
         child: MainButton(
           width: width * 0.7,
           height: height,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => TraineeBottomNavHandler(),
-              ),
-            );
+          onPressed: () async {
+            Map<String, String>  _traineeData = {
+              "Birthday": birthdayController.text,
+              "Language": languageDropdownValue,
+              "Country": countryDropdownValue,
+              "gender": genderDropdownValue,
+              "gmail": gmailController.text,
+              "name": nameController.text,
+            };
+            await providerDatabase
+                .createTrainee(providerAuth.firebaseUser.uid, _traineeData);
+            print(_traineeData);    
+            if (providerDatabase.traineeCreateStatus) {
+              print("Successfully recorded");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TraineeBottomNavHandler(),
+                ),
+              );
+            }
+            else{
+              showSimpleNotification(Text("Error! Please try again"),
+                              background: Colors.red);
+            }
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
@@ -113,7 +200,10 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.datetime,
+                    onTap: () {
+                      selectDate(context);
+                    },
+                    readOnly: true,
                     height: height,
                     width: width - 60,
                     controller: birthdayController,
@@ -125,7 +215,6 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
                     prefixBoxColor: darkYellow,
@@ -167,49 +256,6 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                     ),
                   ),
                   CustomTextField(
-                    keyboardType: TextInputType.phone,
-                    height: height,
-                    width: width - 60,
-                    prefixBoxColor: darkYellow,
-                    prefixIcon: Icon(
-                      Icons.language_rounded,
-                      color: lightYellow,
-                    ),
-                    dropDown: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        DropdownButton<String>(
-                          underline: SizedBox(),
-                          value: languageDropdownValue,
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: textGrey,
-                          ),
-                          style: AppTheme.dropDownTS,
-                          onChanged: (String newValue) {
-                            setState(() {
-                              languageDropdownValue = newValue;
-                            });
-                          },
-                          hint: Text(
-                            "Language",
-                            style: AppTheme.textFieldTS,
-                          ),
-                          items: <String>['Sinhala', 'English']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  CustomTextField(
-                    keyboardType: TextInputType.phone,
                     height: height,
                     width: width - 60,
                     prefixBoxColor: darkYellow,
@@ -247,6 +293,74 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
                             );
                           }).toList(),
                         ),
+                      ],
+                    ),
+                  ),
+                  CustomTextField(
+                    height: height,
+                    width: width - 60,
+                    prefixBoxColor: darkYellow,
+                    prefixIcon: Icon(
+                      Icons.language_rounded,
+                      color: lightYellow,
+                    ),
+                    dropDown: Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        DropdownButton<String>(
+                          underline: SizedBox(),
+                          value: languageDropdownValue,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: textGrey,
+                          ),
+                          style: AppTheme.dropDownTS,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              languageDropdownValue = newValue;
+                              !languageList.contains(newValue)
+                                  ? languageList.add(newValue)
+                                  : null;
+                            });
+                          },
+                          hint: Text(
+                            "Language",
+                            style: AppTheme.textFieldTS,
+                          ),
+                          items: <String>[
+                            'Sinhala',
+                            'English',
+                            "Tamil",
+                            "French",
+                            "German"
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    child: Wrap(
+                      runSpacing: 10,
+                      spacing: 10,
+                      children: [
+                        for (var item in languageList)
+                          TypeContainer(
+                            item: item,
+                            containerColor: darkYellow,
+                            onTap: () {
+                              setState(() {
+                                languageList.remove(item);
+                              });
+                            },
+                          ),
                       ],
                     ),
                   ),

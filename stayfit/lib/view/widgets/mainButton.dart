@@ -34,9 +34,9 @@ class MainButton extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: shadowColor.withOpacity(0.1),
+            color: shadowColor.withOpacity(0.06),
             blurRadius: 10,
-            spreadRadius: 10,
+            spreadRadius: 5,
           ),
         ],
       ),
