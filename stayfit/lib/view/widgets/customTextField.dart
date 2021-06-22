@@ -56,7 +56,7 @@ class CustomTextField extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10),
               child: Container(
                 width: phoneNumberPrefix != null
-                    ? 106
+                    ? 115
                     : dropDown != null
                         ? width * 0.8
                         : 38,

@@ -266,15 +266,15 @@ class ThirdPage extends StatelessWidget {
         crossAxisCount: 2,
         children: [
           InstructorCard(
-            name: 'Jonny Sins',
+            name: 'John Doe',
             imagePath: 'assets/images/jonny.jpeg',
           ),
           InstructorCard(
-            name: 'Danny Daniels',
+            name: 'Danny Fernandaz',
             imagePath: 'assets/images/danny.jpeg',
           ),
           InstructorCard(
-            name: 'Shasha Grey',
+            name: 'Shasha Peiris',
             imagePath: 'assets/images/sasha.jpeg',
           ),
           Padding(
