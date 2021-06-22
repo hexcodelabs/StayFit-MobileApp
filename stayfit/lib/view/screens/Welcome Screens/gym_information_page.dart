@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
@@ -26,10 +28,15 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
   TextEditingController phoneNumberController = new TextEditingController();
   String dropdownValue = "+94";
   String typeValue = "Yoga";
+  var providerAuth;
+  var providerDatabase;
 
   @override
   void initState() {
     super.initState();
+    providerAuth = Provider.of<AuthFunctions>(context, listen: false);
+    providerDatabase = Provider.of<Database>(context, listen: false);
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }

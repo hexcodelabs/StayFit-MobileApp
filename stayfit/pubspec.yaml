@@ -31,6 +31,9 @@ dependencies:
   firebase_auth: ^1.0.3
   firebase_storage: any
   cloud_firestore: ^1.0.4
+  overlay_support: ^1.2.1
+  provider: ^5.0.0
+  google_sign_in: ^5.0.4
 
 dev_dependencies:
   flutter_test:

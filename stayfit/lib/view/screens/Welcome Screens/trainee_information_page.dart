@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
+import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
@@ -25,10 +29,16 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
   String genderDropdownValue = "Male";
   String countryDropdownValue = "Sri Lanka";
   String languageDropdownValue = "Sinhala";
+  var providerAuth;
+  var providerDatabase;
 
   @override
   void initState() {
     super.initState();
+
+    providerAuth = Provider.of<AuthFunctions>(context, listen: false);
+    providerDatabase = Provider.of<Database>(context, listen: false);
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
@@ -45,13 +55,31 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
         child: MainButton(
           width: width * 0.7,
           height: height,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => TraineeBottomNavHandler(),
-              ),
-            );
+          onPressed: () async {
+            Map<String, String>  _traineeData = {
+              "Birthday": birthdayController.text,
+              "Language": languageDropdownValue,
+              "Country": countryDropdownValue,
+              "gender": genderDropdownValue,
+              "gmail": gmailController.text,
+              "name": nameController.text,
+            };
+            await providerDatabase
+                .createTrainee(providerAuth.firebaseUser.uid, _traineeData);
+            print(_traineeData);    
+            if (providerDatabase.traineeCreateStatus) {
+              print("Successfully recorded");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TraineeBottomNavHandler(),
+                ),
+              );
+            }
+            else{
+              showSimpleNotification(Text("Error! Please try again"),
+                              background: Colors.red);
+            }
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
