@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "703244740269",
+    "firebase_url": "https://stayfit-mobileapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "stayfit-mobileapp",
+    "storage_bucket": "stayfit-mobileapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703244740269:android:6c2b5f63103bbd622b4824",
+        "android_client_info": {
+          "package_name": "com.example.stayfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703244740269-uc86t4po23631pcp1ia4jmmcs2kifnfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbO8Q4vnaM6PQmMwAAV2r-mfJqUL4goWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703244740269-uc86t4po23631pcp1ia4jmmcs2kifnfr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "703244740269-bpslnfg6tmerc817erau4t062oc20a0n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lk.hexcodelabs.stayfit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
