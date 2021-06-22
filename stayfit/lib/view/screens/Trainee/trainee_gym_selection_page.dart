@@ -41,71 +41,69 @@ class _GymSelectPageState extends State<GymSelectPage> {
     return Scaffold(
       backgroundColor: backgroundGrey,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(32, 40, 32, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      gymName,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    CustomContainer(
-                      width: 50,
-                      height: 50,
-                      boxColor: mainGreen,
-                      radius: 12,
-                    ),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 40, 32, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    gymName,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  CustomContainer(
+                    width: 50,
+                    height: 50,
+                    boxColor: mainGreen,
+                    radius: 12,
+                  ),
+                ],
               ),
-              Container(
-                height: height,
-                child: PageView(
-                  controller: pageController,
-                  reverse: false,
-                  physics: BouncingScrollPhysics(),
-                  onPageChanged: (int index) {
-                    setState(() {
-                      check = index;
-                    });
-                  },
-                  children: [
-                    PageViewContainer(
-                      height: height * 0.76,
-                      width: width * 0.75,
-                      imageBoxColor: mainGreen,
-                      image: "assets/images/p4.png",
-                      topicTS: AppTheme.onBoardPageTopicTS,
-                      descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                    ),
-                    PageViewContainer(
-                      height: height * 0.76,
-                      width: width * 0.75,
-                      imageBoxColor: mainGreen,
-                      image: "assets/images/p5.png",
-                      topicTS: AppTheme.onBoardPageTopicTS,
-                      descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                    ),
-                    PageViewContainer(
-                      height: height * 0.76,
-                      width: width * 0.75,
-                      imageBoxColor: mainGreen,
-                      image: "assets/images/p2.PNG",
-                      topicTS: AppTheme.onBoardPageTopicTS,
-                      descriptionTS: AppTheme.onBoardPageDescriptionTS,
-                    ),
-                  ],
-                ),
+            ),
+            Container(
+              height: height,
+              child: PageView(
+                controller: pageController,
+                reverse: false,
+                physics: BouncingScrollPhysics(),
+                onPageChanged: (int index) {
+                  setState(() {
+                    check = index;
+                  });
+                },
+                children: [
+                  PageViewContainer(
+                    height: height * 0.76,
+                    width: width * 0.75,
+                    imageBoxColor: mainGreen,
+                    image: "assets/images/p4.png",
+                    topicTS: AppTheme.onBoardPageTopicTS,
+                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
+                  ),
+                  PageViewContainer(
+                    height: height * 0.76,
+                    width: width * 0.75,
+                    imageBoxColor: mainGreen,
+                    image: "assets/images/p5.png",
+                    topicTS: AppTheme.onBoardPageTopicTS,
+                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
+                  ),
+                  PageViewContainer(
+                    height: height * 0.76,
+                    width: width * 0.75,
+                    imageBoxColor: mainGreen,
+                    image: "assets/images/p2.PNG",
+                    topicTS: AppTheme.onBoardPageTopicTS,
+                    descriptionTS: AppTheme.onBoardPageDescriptionTS,
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
