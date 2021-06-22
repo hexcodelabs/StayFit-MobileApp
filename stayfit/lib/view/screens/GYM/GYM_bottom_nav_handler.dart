@@ -226,7 +226,7 @@ class FirstPage extends StatelessWidget {
             eventName: 'Yoga',
             date: 'May 21st',
             likes: 2500,
-            imagePath: 'assets/images/yoga.jpeg',
+            imagePath: 'assets/images/p5.png',
             time: '1.00pm - 2.00pm ',
           ),
           EventCard(

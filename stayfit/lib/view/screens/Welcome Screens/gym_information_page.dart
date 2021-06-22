@@ -68,11 +68,11 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
           width: width * 0.7,
           height: height,
           onPressed: () async {
-            Map<String, String> _gymData = {
+            var _gymData = {
               "address": addressController.text,
               "admin": adminController.text,
               "phone_number": dropdownValue + phoneNumberController.text,
-              "types": typeValue,
+              "types": typeList,
               "gmail": gmailController.text,
               "name": nameController.text,
             };

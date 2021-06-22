@@ -115,9 +115,9 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
           width: width * 0.7,
           height: height,
           onPressed: () async {
-            Map<String, String>  _traineeData = {
-              "Birthday": birthdayController.text,
-              "Language": languageDropdownValue,
+            var  _traineeData = {
+              "Birthday": birthday,
+              "Language": languageList,
               "Country": countryDropdownValue,
               "gender": genderDropdownValue,
               "gmail": gmailController.text,

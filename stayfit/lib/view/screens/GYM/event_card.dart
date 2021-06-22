@@ -38,14 +38,14 @@ class EventCard extends StatelessWidget {
                 Text(
                   eventName,
                   style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
                 Text(
                   date,
                   style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Colors.white),
                 ),
@@ -55,7 +55,7 @@ class EventCard extends StatelessWidget {
                 Text(
                   time,
                   style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 14,
                       fontWeight: FontWeight.w300,
                       color: Colors.white),
                 ),

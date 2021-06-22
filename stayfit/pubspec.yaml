@@ -34,7 +34,10 @@ dependencies:
   overlay_support: ^1.2.1
   provider: ^5.0.0
   google_sign_in: ^5.0.4
-  flutter_datetime_picker: ^1.5.1
+  flutter_datetime_picker:
+    git:
+      url: https://github.com/Realank/flutter_datetime_picker.git
+      ref: master
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +79,12 @@ flutter:
         - asset: assets/fonts/Gilroy-Bold.ttf
         - asset: assets/fonts/Gilroy-Medium.ttf
         - asset: assets/fonts/Gilroy-Regular.ttf
+    - family: SFPro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Display-SemiBold.otf
+        - asset: assets/fonts/SF-Pro-Display-Bold.otf
+        - asset: assets/fonts/SF-Pro-Display-Medium.otf
+        - asset: assets/fonts/SF-Pro-Display-Regular.otf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
