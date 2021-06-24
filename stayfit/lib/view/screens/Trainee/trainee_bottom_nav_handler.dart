@@ -28,6 +28,7 @@ class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
     ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: pages[bottomBarIndex],
       bottomNavigationBar: Theme(

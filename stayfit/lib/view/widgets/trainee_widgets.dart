@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget progressCard(String msg) {
+Widget progressCard(double width, double height, String msg) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
     child: Container(
-      height: 188,
+      height: height*0.28,
       decoration: BoxDecoration(
           color: Color.fromRGBO(255, 86, 94, 1),
           borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -69,18 +69,23 @@ Widget progressCard(String msg) {
                   shape: BoxShape.circle,
                   color: Color.fromRGBO(255, 255, 255, 0.35)),
               child: Center(
-                child: Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(255, 255, 255, 1)),
-                    child: Center(
-                      child: Text(
-                        "OK",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    )),
+                child: GestureDetector(
+                  onTap: ()=>{
+                    print("Pressed OK")
+                  },
+                  child: Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(255, 255, 255, 1)),
+                      child: Center(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      )),
+                ),
               ),
             ),
           )
@@ -90,13 +95,13 @@ Widget progressCard(String msg) {
   );
 }
 
-Widget gymCard(String name, String tagLine, int likes, Function onTap) {
+Widget gymCard(String name, String tagLine, int likes, double width, double height, Function onTap) {
   return GestureDetector(
     onTap: onTap,
     child: Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Container(
-        height: 265,
+        height: height*0.38,
         decoration: BoxDecoration(
             color: Color.fromRGBO(48, 68, 78, 1),
             borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -107,7 +112,7 @@ Widget gymCard(String name, String tagLine, int likes, Function onTap) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 160,
+                  height: height*0.24,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/images/gym_colombo.jpg'),
@@ -121,9 +126,14 @@ Widget gymCard(String name, String tagLine, int likes, Function onTap) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      name,
-                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    Container(
+                      width: width*0.45,
+                      child: Text(
+                        name,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      ),
                     ),
                     Container(
                       child: Row(
@@ -150,10 +160,15 @@ Widget gymCard(String name, String tagLine, int likes, Function onTap) {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  tagLine,
-                  style: TextStyle(
-                      fontSize: 12, color: Color.fromRGBO(150, 167, 175, 1)),
+                Container(
+                  width: width*0.75,
+                  child: Text(
+                    tagLine,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                        fontSize: 12, color: Color.fromRGBO(150, 167, 175, 1)),
+                  ),
                 )
               ],
             ),
@@ -164,9 +179,9 @@ Widget gymCard(String name, String tagLine, int likes, Function onTap) {
   );
 }
 
-Widget subscriptionCardOne(String type, String place, String price) {
+Widget subscriptionCardOne(double height,double width, String type, String place, String price) {
   return Container(
-    height: 180,
+    height: height*0.27,
     decoration: BoxDecoration(
         color: Color.fromRGBO(255, 86, 94, 1),
         borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -220,7 +235,7 @@ Widget subscriptionCardOne(String type, String place, String price) {
             ),
           ),
           Positioned(
-            top: 102,
+            top: 150,
             left: -21,
             child: Container(
               width: 187,
@@ -235,24 +250,31 @@ Widget subscriptionCardOne(String type, String place, String price) {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      type,
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    ),
-                    SizedBox(
-                      height: 7,
-                    ),
-                    Text("By " + place,
-                        style: TextStyle(color: Colors.white, fontSize: 13))
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: width*0.7,
+                          child: Text(
+                            type,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                        ),
+                        Text("By " + place,
+                            style: TextStyle(color: Colors.white, fontSize: 13)),
+                      ],
+                    )
                   ],
                 ),
-                Column(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text("\$" + price.toString(),
@@ -268,10 +290,10 @@ Widget subscriptionCardOne(String type, String place, String price) {
   );
 }
 
-Widget subscriptionCardTwo(String type, String place, String price) {
+Widget subscriptionCardTwo(double height,double width,String type, String place, String price) {
   return Container(
-      width: 160,
-      height: 180,
+      width: width*0.4,
+      height: height*0.27,
       decoration: BoxDecoration(
           color: Color.fromRGBO(62, 213, 152, 1),
           borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -280,7 +302,7 @@ Widget subscriptionCardTwo(String type, String place, String price) {
         child: Stack(
           children: [
             Positioned(
-              top: 90,
+              top: 140,
               left: -18,
               child: Container(
                 width: 79,
@@ -303,14 +325,22 @@ Widget subscriptionCardTwo(String type, String place, String price) {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              type,
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white),
+                            Container(
+                              width:width*0.3,
+                              child: Text(
+                                type,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
+                                style:
+                                    TextStyle(fontSize: 24, color: Colors.white),
+                              ),
                             ),
                             Container(
+                                width:width*0.3,
                                 child: Text(
                               "By " + place,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
                               style:
                                   TextStyle(fontSize: 12, color: Colors.white),
                             ))
@@ -332,10 +362,10 @@ Widget subscriptionCardTwo(String type, String place, String price) {
       ));
 }
 
-Widget subscriptionCardThree(String type, String place, String price) {
+Widget subscriptionCardThree(double height,double width, String type, String place, String price) {
   return Container(
-      width: 160,
-      height: 180,
+      width: width*0.4,
+      height: height*0.27,
       decoration: BoxDecoration(
           color: Color.fromRGBO(255, 197, 66, 1),
           borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -344,7 +374,7 @@ Widget subscriptionCardThree(String type, String place, String price) {
         child: Stack(
           children: [
             Positioned(
-              top: 100,
+              top: 160,
               left: 90,
               child: Container(
                 width: 80,
@@ -367,14 +397,22 @@ Widget subscriptionCardThree(String type, String place, String price) {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              type,
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white),
+                            Container(
+                              width:width*0.3,
+                              child: Text(
+                                type,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
+                                style:
+                                TextStyle(fontSize: 24, color: Colors.white),
+                              ),
                             ),
                             Container(
+                                width:width*0.3,
                                 child: Text(
                               "By " + place,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
                               style:
                                   TextStyle(fontSize: 12, color: Colors.white),
                             ))

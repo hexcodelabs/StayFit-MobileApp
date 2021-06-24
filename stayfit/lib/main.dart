@@ -3,9 +3,13 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
+import 'package:stayfit/controller/provider/trainee_provider.dart';
+import 'package:provider/provider.dart';
+
 
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
+
 
 
 void main() {
