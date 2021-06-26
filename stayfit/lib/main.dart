@@ -3,8 +3,6 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
-import 'package:stayfit/controller/provider/trainee_provider.dart';
-import 'package:provider/provider.dart';
 
 
 import 'package:stayfit/utils/themes.dart';
@@ -23,8 +21,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          Provider<AuthFunctions>(create: (_) => AuthFunctions()),
-          Provider<Database>(create: (_) => Database()),
+          ChangeNotifierProvider(
+            create: (context) => Database(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => AuthFunctions(),
+          ),
         ],
         child: MaterialApp(
       title: 'Stayfit',

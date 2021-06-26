@@ -24,6 +24,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     Firebase.initializeApp();
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
   }
 
   @override

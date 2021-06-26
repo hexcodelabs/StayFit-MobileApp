@@ -235,8 +235,8 @@ Widget subscriptionCardOne(double height,double width, String type, String place
             ),
           ),
           Positioned(
-            top: 150,
-            left: -21,
+            bottom: 0,
+            left: 0,
             child: Container(
               width: 187,
               height: 107,
@@ -277,7 +277,7 @@ Widget subscriptionCardOne(double height,double width, String type, String place
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("\$" + price.toString(),
+                    Text("Rs." + price.toString(),
                         style: TextStyle(color: Colors.white, fontSize: 18))
                   ],
                 )
@@ -302,8 +302,8 @@ Widget subscriptionCardTwo(double height,double width,String type, String place,
         child: Stack(
           children: [
             Positioned(
-              top: 140,
-              left: -18,
+              bottom: 0,
+              left: 0,
               child: Container(
                 width: 79,
                 height: 105,
@@ -311,6 +311,7 @@ Widget subscriptionCardTwo(double height,double width,String type, String place,
                     image: DecorationImage(
                       image: AssetImage('assets/images/card_anim_2.png'),
                       fit: BoxFit.fill,
+
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(25))),
               ),
@@ -351,7 +352,7 @@ Widget subscriptionCardTwo(double height,double width,String type, String place,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("\$" + price,
+                        Text("Rs." + price,
                             style: TextStyle(fontSize: 18, color: Colors.white))
                       ],
                     )
@@ -374,8 +375,8 @@ Widget subscriptionCardThree(double height,double width, String type, String pla
         child: Stack(
           children: [
             Positioned(
-              top: 160,
-              left: 90,
+              bottom: 0,
+              right: 0,
               child: Container(
                 width: 80,
                 height: 79,
@@ -423,7 +424,7 @@ Widget subscriptionCardThree(double height,double width, String type, String pla
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("\$" + price,
+                        Text("Rs." + price,
                             style: TextStyle(fontSize: 18, color: Colors.white))
                       ],
                     )
@@ -461,7 +462,7 @@ Widget priceCard(String type, String place, String price) {
             SizedBox(
               height: 10,
             ),
-            Text("\$" + price,
+            Text("Rs." + price,
                 style: TextStyle(fontSize: 18, color: Colors.white))
           ],
         )
@@ -504,7 +505,7 @@ Widget totalCard(String price) {
             SizedBox(
               height: 6,
             ),
-            Text("\$" + price,
+            Text("Rs." + price,
                 style: TextStyle(fontSize: 24, color: Colors.white))
           ],
         )

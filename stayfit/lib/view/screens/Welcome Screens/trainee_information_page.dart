@@ -88,6 +88,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
     providerAuth = Provider.of<AuthFunctions>(context, listen: false);
     providerDatabase = Provider.of<Database>(context, listen: false);
 
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
@@ -125,6 +126,7 @@ class _TraineeInformationScreenState extends State<TraineeInformationScreen> {
             };
             await providerDatabase
                 .createTrainee(providerAuth.firebaseUser.uid, _traineeData);
+
             print(_traineeData);    
             if (providerDatabase.traineeCreateStatus) {
               print("Successfully recorded");
