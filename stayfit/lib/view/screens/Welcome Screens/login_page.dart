@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               background: Colors.red);
                         }
                       },
-                      text: "Sign up with Google",
+                      text: "Sign in with Google",
                       prefixIcon: SvgPicture.asset(
                         "assets/images/icons8-google (1).svg",
                         color: Colors.white,
@@ -137,19 +137,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Already have an account? ",
-                          style: AppTheme.subTitleTS,
-                        ),
-                        Text(
-                          "Log in",
-                          style: AppTheme.subTitleGreenTS,
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Already have an account? ",
+                    //       style: AppTheme.subTitleTS,
+                    //     ),
+                    //     Text(
+                    //       "Log in",
+                    //       style: AppTheme.subTitleGreenTS,
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

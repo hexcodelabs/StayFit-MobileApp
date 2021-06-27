@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_checkout.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
@@ -56,7 +57,12 @@ class TraineeHomePage extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                      onPressed: () => {print("Pressed notification")},
+                      onPressed: () async {
+                        print("Pressed notification");
+                        AuthFunctions fbFunctions = new AuthFunctions();
+                        await fbFunctions.signOut();
+                        
+                      },
                       icon: FaIcon(
                         FontAwesomeIcons.solidBell,
                         color: Colors.white,
@@ -87,7 +93,7 @@ class TraineeHomePage extends StatelessWidget {
                     contentPadding: EdgeInsets.all(8.0),
                     hintText: 'Search Gym',
                     hintStyle:
-                    TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
+                        TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
               ),
               SizedBox(
                 height: 10,
@@ -104,16 +110,16 @@ class TraineeHomePage extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return showReportCard && index == 0
                               ? progressCard(width, height,
-                              "It looks like you are on track. Please continue to follow your daily plan.")
+                                  "It looks like you are on track. Please continue to follow your daily plan.")
                               : gymCard(
-                              gymList[index - 1]['name'],
-                              gymList[index - 1]['tagLine'],
-                              gymList[index - 1]['likes'],
-                              width,
-                              height, () {
-                            Navigator.of(context)
-                                .push(pageRoute(TraineeCheckout()));
-                          });
+                                  gymList[index - 1]['name'],
+                                  gymList[index - 1]['tagLine'],
+                                  gymList[index - 1]['likes'],
+                                  width,
+                                  height, () {
+                                  Navigator.of(context)
+                                      .push(pageRoute(TraineeCheckout()));
+                                });
                         })),
               )
             ],

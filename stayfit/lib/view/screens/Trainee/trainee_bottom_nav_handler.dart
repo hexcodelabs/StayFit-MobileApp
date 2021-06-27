@@ -12,7 +12,7 @@ class TraineeBottomNavHandler extends StatefulWidget {
 }
 
 class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
-  var bottomBarIndex = 0;
+  var bottomBarIndex = 1;
 
   @override
   void initState() {
