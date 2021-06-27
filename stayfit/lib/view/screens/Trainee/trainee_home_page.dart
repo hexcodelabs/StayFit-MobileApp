@@ -79,7 +79,7 @@ class TraineeHomePage extends StatelessWidget {
                         });
                       },
                       icon: FaIcon(
-                        FontAwesomeIcons.solidBell,
+                        FontAwesomeIcons.signOutAlt,
                         color: Colors.white,
                       )),
                 ],
@@ -109,6 +109,9 @@ class TraineeHomePage extends StatelessWidget {
                     hintText: 'Search Gym',
                     hintStyle:
                         TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Container(
                 height: height * 0.75,
