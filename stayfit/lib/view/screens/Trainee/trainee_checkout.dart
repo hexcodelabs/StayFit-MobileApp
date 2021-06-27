@@ -61,14 +61,14 @@ class TraineeCheckout extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(48, 68, 78, 1),
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40.0),
-                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(20.0),
+                    topLeft: Radius.circular(20.0),
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3),
                       spreadRadius: 5,
-                      blurRadius: 7,
+                      blurRadius: 15,
                       offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],

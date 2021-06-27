@@ -14,7 +14,6 @@ import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
-
   runApp(OverlaySupport(child: MyApp()));
 }
 

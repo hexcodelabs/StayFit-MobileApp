@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_home_page.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_useredit_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
 class TraineeBottomNavHandler extends StatefulWidget {
@@ -12,7 +13,7 @@ class TraineeBottomNavHandler extends StatefulWidget {
 }
 
 class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
-  var bottomBarIndex = 0;
+  var bottomBarIndex = 1;
 
   @override
   void initState() {
@@ -24,7 +25,7 @@ class _TraineeBottomNavHandlerState extends State<TraineeBottomNavHandler> {
     final List<Widget> pages = [
       TraineeFavouritesPage(),
       TraineeHomePage(),
-      ThirdPage(),
+      TraineeEditPage(),
     ];
 
     return Scaffold(

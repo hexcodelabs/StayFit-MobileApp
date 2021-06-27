@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/utils/themes.dart';
+import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
+import 'package:stayfit/view/screens/Trainee/trainee_bottom_nav_handler.dart';
 import 'package:stayfit/view/screens/Welcome%20Screens/onbording_page%20.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
@@ -17,13 +20,25 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  String _userType = "";
+
   @override
   void initState() {
     super.initState();
     //Initialzing firebase
-    Firebase.initializeApp();
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    statusForRoute();
+  }
+
+  Future<void> statusForRoute() async {
+    await Firebase.initializeApp();
+    AuthFunctions fbFunctions = new AuthFunctions();
+    await fbFunctions.isSignedInCheck().then((value) {
+      setState(() {
+        _userType = value;
+      });
+    });
   }
 
   @override
@@ -39,12 +54,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           width: width * 0.7,
           height: height,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => OnboardingScreen(),
-              ),
-            );
+            if (_userType == "NOUSER") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => OnboardingScreen(),
+                ),
+              );
+            }
+            else if(_userType=="GYM"){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => GYMDrawerHandler()),
+              );
+            }
+            else if(_userType=="TRAINEE"){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TraineeBottomNavHandler(),
+                ),
+              );
+            }
           },
           text: "Next",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),

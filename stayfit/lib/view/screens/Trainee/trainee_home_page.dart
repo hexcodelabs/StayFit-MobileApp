@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_checkout.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
@@ -56,9 +59,27 @@ class TraineeHomePage extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                      onPressed: () => {print("Pressed notification")},
+                      onPressed: () async {
+                        print("Pressed notification");
+                        AuthFunctions fbFunctions = new AuthFunctions();
+                        await fbFunctions.signOut().then((value) {
+                          if (value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    WelcomeScreen(),
+                              ),
+                            );
+                          }
+                          else{
+                            showSimpleNotification(Text("Error! Signing out"),
+                              background: Colors.red);
+                          }
+                        });
+                      },
                       icon: FaIcon(
-                        FontAwesomeIcons.solidBell,
+                        FontAwesomeIcons.signOutAlt,
                         color: Colors.white,
                       )),
                 ],
@@ -87,13 +108,13 @@ class TraineeHomePage extends StatelessWidget {
                     contentPadding: EdgeInsets.all(8.0),
                     hintText: 'Search Gym',
                     hintStyle:
-                    TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
+                        TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
               ),
               SizedBox(
                 height: 10,
               ),
               Container(
-                height: height * 0.65,
+                height: height * 0.75,
                 child: Scrollbar(
                     controller: _contentController,
                     isAlwaysShown: false,
@@ -104,16 +125,16 @@ class TraineeHomePage extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return showReportCard && index == 0
                               ? progressCard(width, height,
-                              "It looks like you are on track. Please continue to follow your daily plan.")
+                                  "It looks like you are on track. Please continue to follow your daily plan.")
                               : gymCard(
-                              gymList[index - 1]['name'],
-                              gymList[index - 1]['tagLine'],
-                              gymList[index - 1]['likes'],
-                              width,
-                              height, () {
-                            Navigator.of(context)
-                                .push(pageRoute(TraineeCheckout()));
-                          });
+                                  gymList[index - 1]['name'],
+                                  gymList[index - 1]['tagLine'],
+                                  gymList[index - 1]['likes'],
+                                  width,
+                                  height, () {
+                                  Navigator.of(context)
+                                      .push(pageRoute(TraineeCheckout()));
+                                });
                         })),
               )
             ],
