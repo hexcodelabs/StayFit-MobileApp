@@ -1,50 +1,34 @@
 {
   "project_info": {
-    "project_number": "703244740269",
-    "firebase_url": "https://stayfit-mobileapp-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "stayfit-mobileapp",
-    "storage_bucket": "stayfit-mobileapp.appspot.com"
+    "project_number": "541306255420",
+    "project_id": "stay-fit-d0b34",
+    "storage_bucket": "stay-fit-d0b34.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:703244740269:android:6c2b5f63103bbd622b4824",
+        "mobilesdk_app_id": "1:541306255420:android:b02ead394ce5e56c0bab39",
         "android_client_info": {
           "package_name": "com.example.stayfit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "703244740269-e18smltrskav6b4r7kj0scg7q4i2iqv8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.stayfit",
-            "certificate_hash": "23b890ea7c557d75196f84243705684bfc4c13dd"
-          }
-        },
-        {
-          "client_id": "703244740269-uc86t4po23631pcp1ia4jmmcs2kifnfr.apps.googleusercontent.com",
+          "client_id": "541306255420-lcc3sc8rharrr7kdmhmar7kelaskuqrp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAbO8Q4vnaM6PQmMwAAV2r-mfJqUL4goWw"
+          "current_key": "AIzaSyD5bmKzICAkDihezs2FF5Lon3lhirDI2Es"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "703244740269-uc86t4po23631pcp1ia4jmmcs2kifnfr.apps.googleusercontent.com",
+              "client_id": "541306255420-lcc3sc8rharrr7kdmhmar7kelaskuqrp.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "703244740269-bpslnfg6tmerc817erau4t062oc20a0n.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "lk.hexcodelabs.stayfit"
-              }
             }
           ]
         }
