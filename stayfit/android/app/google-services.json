@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "541306255420-1fjf99ldtlum94gkh1da2om6f9hqp6go.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stayfit",
+            "certificate_hash": "23b890ea7c557d75196f84243705684bfc4c13dd"
+          }
+        },
+        {
           "client_id": "541306255420-lcc3sc8rharrr7kdmhmar7kelaskuqrp.apps.googleusercontent.com",
           "client_type": 3
         }
