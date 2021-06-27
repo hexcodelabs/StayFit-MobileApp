@@ -79,7 +79,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
             await providerDatabase.createGYM(
                 providerAuth.firebaseUser.uid, _gymData);
                 
-            if (providerDatabase.traineeCreateStatus) {
+            if (providerDatabase.gymCreateStatus) {
               print("Successfully recorded");
               Navigator.push(
                 context,
