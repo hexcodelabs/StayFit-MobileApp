@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
-import 'package:stayfit/view/screens/GYM/add_service.dart';
+import 'package:stayfit/view/screens/GYM/add_session.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
 import 'event_card.dart';
