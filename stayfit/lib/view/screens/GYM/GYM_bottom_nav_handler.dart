@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/GYM/add_service.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
 import 'event_card.dart';
@@ -222,12 +223,22 @@ class FirstPage extends StatelessWidget {
         childAspectRatio: 1.25,
         crossAxisCount: 1,
         children: [
-          EventCard(
-            eventName: 'Yoga',
-            date: 'May 21st',
-            likes: 2500,
-            imagePath: 'assets/images/p5.png',
-            time: '1.00pm - 2.00pm ',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => AddSession(),
+                ),
+              );
+            },
+            child: EventCard(
+              eventName: 'Yoga',
+              date: 'May 21st',
+              likes: 2500,
+              imagePath: 'assets/images/p5.png',
+              time: '1.00pm - 2.00pm ',
+            ),
           ),
           EventCard(
             eventName: 'Body \nBuilding',

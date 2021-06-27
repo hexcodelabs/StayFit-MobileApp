@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore: ^1.0.4
   overlay_support: ^1.2.1
   google_sign_in: ^5.0.4
+  image_picker: any
   flutter_datetime_picker:
     git:
       url: https://github.com/Realank/flutter_datetime_picker.git

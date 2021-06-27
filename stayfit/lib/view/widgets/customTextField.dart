@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.dropDown,
     this.readOnly = false,
     this.onTap,
+    this.phoneNumberPrefixWidth = 115,
   }) : super(key: key);
 
   final double height;
@@ -33,6 +34,7 @@ class CustomTextField extends StatelessWidget {
   final Widget dropDown;
   final bool readOnly;
   final Function onTap;
+  final double phoneNumberPrefixWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class CustomTextField extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10),
               child: Container(
                 width: phoneNumberPrefix != null
-                    ? 115
+                    ? phoneNumberPrefixWidth
                     : dropDown != null
                         ? width * 0.8
                         : 38,
