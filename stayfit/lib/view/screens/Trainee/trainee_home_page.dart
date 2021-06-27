@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_checkout.dart';
 import 'package:stayfit/view/screens/Trainee/trainee_favourites_page.dart';
+import 'package:stayfit/view/screens/Welcome%20Screens/welcome_page.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
@@ -60,8 +62,21 @@ class TraineeHomePage extends StatelessWidget {
                       onPressed: () async {
                         print("Pressed notification");
                         AuthFunctions fbFunctions = new AuthFunctions();
-                        await fbFunctions.signOut();
-                        
+                        await fbFunctions.signOut().then((value) {
+                          if (value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    WelcomeScreen(),
+                              ),
+                            );
+                          }
+                          else{
+                            showSimpleNotification(Text("Error! Signing out"),
+                              background: Colors.red);
+                          }
+                        });
                       },
                       icon: FaIcon(
                         FontAwesomeIcons.solidBell,
@@ -95,11 +110,8 @@ class TraineeHomePage extends StatelessWidget {
                     hintStyle:
                         TextStyle(color: Color.fromRGBO(201, 208, 219, 1))),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
-                height: height * 0.65,
+                height: height * 0.75,
                 child: Scrollbar(
                     controller: _contentController,
                     isAlwaysShown: false,
