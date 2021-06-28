@@ -65,13 +65,9 @@ class Database with ChangeNotifier {
 
   Future<void> createSession(object) async {
     DocumentReference ref =
-        await FirebaseFirestore.instance.collection("gym_sessions").doc();
+    FirebaseFirestore.instance.collection("gym_sessions").doc();
     await ref.set(object).catchError((e) {
       _sessionCreateStatus = false;
-      print(e.toString());
-    });
-    ;
-      _gymCreateStatus = false;
       print(e.toString());
     });
     notifyListeners();
@@ -80,6 +76,7 @@ class Database with ChangeNotifier {
   Future<void> getGymUsers() async {
     _gymUsersFetchStatus = false;
     int index = 0;
+    _gymList = {};
     await FirebaseFirestore.instance
         .collection('gym_users')
         .get()
@@ -131,21 +128,30 @@ class Database with ChangeNotifier {
   }
 
   Future<void> favourites(List<dynamic> sessionIds) async {
-    _favouritesFetchStatus = false;
-    _favourites = [];
+
     if (sessionIds != null){
-      for (int i=0 ; i<sessionIds.length ; i++){
-        await FirebaseFirestore.instance
-            .doc(sessionIds[i])
-            .get()
-            .then((doc) => {
-          _favourites.add(doc.data())
-        });
+      if(sessionIds.isEmpty){
+        _favourites = [];
+      }else{
+        _favouritesFetchStatus = false;
+        _favourites = [];
+
+        for (int i=0 ; i<sessionIds.length ; i++){
+          await FirebaseFirestore.instance
+              .doc(sessionIds[i])
+              .get()
+              .then((doc) => {
+            _favourites.add(doc.data())
+          });
+        }
+        print(_favourites);
+        _favouritesFetchStatus = true;
+        notifyListeners();
       }
+
     }
-    _favouritesFetchStatus = true;
-    notifyListeners();
-    print(_favourites);
+
+
 
   }
 
