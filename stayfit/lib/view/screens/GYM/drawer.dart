@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/utils/colors.dart';
 
-class DrawerMenu extends GetWidget<AuthController> {
+class DrawerMenu extends StatelessWidget {
   final Color backgroundColor;
   final double screenWidth;
   final double screenHeight;

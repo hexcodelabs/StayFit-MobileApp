@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
@@ -80,20 +79,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: width - 60,
                       height: height,
                       onPressed: () async {
-                        
                         //Executing google signin when clicking the button
                         final provider =
                             Provider.of<AuthFunctions>(context, listen: false);
 
                         //executing google signin
                         await provider.googleLogIn();
-                        
+
                         setState(() {
                           processingAuth = true;
                         });
                         await provider.getUser().then((uid) {
-                          print(widget.userType +" " +provider.firebaseUser.uid);
-                          if(provider.firebaseUser.uid!=null){
+                          print(widget.userType +
+                              " " +
+                              provider.firebaseUser.uid);
+                          if (provider.firebaseUser.uid != null) {
                             setState(() {
                               processingAuth = false;
                             });

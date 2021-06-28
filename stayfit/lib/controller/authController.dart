@@ -2,12 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-class AuthController extends GetxController {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-}
 
 class AuthFunctions with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -55,9 +50,9 @@ class AuthFunctions with ChangeNotifier {
         querySnapshot.docs.forEach((doc) {
           // print(doc.data());
           var traineeID = doc.id;
-          if(traineeID==user.uid){
-            print("TRAINEE "+traineeID);
-            _signedInUserType =  "TRAINEE";
+          if (traineeID == user.uid) {
+            print("TRAINEE " + traineeID);
+            _signedInUserType = "TRAINEE";
           }
         });
       });
@@ -68,9 +63,9 @@ class AuthFunctions with ChangeNotifier {
         querySnapshot.docs.forEach((doc) {
           // print(doc.data());
           var traineeID = doc.id;
-          if(traineeID==user.uid){
-            print("GYM "+traineeID);
-            _signedInUserType =  "GYM";
+          if (traineeID == user.uid) {
+            print("GYM " + traineeID);
+            _signedInUserType = "GYM";
           }
         });
       });
@@ -90,5 +85,4 @@ class AuthFunctions with ChangeNotifier {
       return false;
     }
   }
-  
 }

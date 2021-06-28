@@ -2,15 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/GYM/GYM_drawer_handler.dart';
-import 'package:stayfit/view/screens/Welcome%20Screens/login_page.dart';
-import 'package:stayfit/view/screens/Welcome%20Screens/trainee_information_page.dart';
 import 'package:stayfit/view/widgets/customContainer.dart';
 import 'package:stayfit/view/widgets/customTextField.dart';
 import 'package:stayfit/view/widgets/mainButton.dart';
@@ -37,7 +34,6 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
   var providerAuth;
   var providerDatabase;
   List<String> typeList = [];
-
 
   @override
   void initState() {
@@ -78,7 +74,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
             };
             await providerDatabase.createGYM(
                 providerAuth.firebaseUser.uid, _gymData);
-                
+
             if (providerDatabase.gymCreateStatus) {
               print("Successfully recorded");
               Navigator.push(
