@@ -5,13 +5,18 @@ import 'package:stayfit/view/widgets/trainee_widgets.dart';
 
 class TraineeCheckout extends StatelessWidget {
 
+  const TraineeCheckout({
+    Key key,
+    this.data
+  }) : super(key: key);
+
+  final Map<String, dynamic> data;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-
-
+    print("dd");
+    print(data);
     return Scaffold(
       backgroundColor: Color(0x0096a7af),
       resizeToAvoidBottomInset: false,
@@ -45,9 +50,9 @@ class TraineeCheckout extends StatelessWidget {
                 SizedBox(
                   height: 36,
                 ),
-                priceCard("YOGA", "Colombo Gym", "90.00"),
+                priceCard(data["type"], data["name"], data["price"]),
                 Spacer(),
-                totalCard("180.00"),
+                totalCard(data["price"]),
               ],
             ),
           ),

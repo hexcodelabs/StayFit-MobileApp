@@ -6,14 +6,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthFunctions with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  
   User _firebaseUser;
   GoogleSignInAccount _user;
   String _signedInUserType;
 
+  Map<String, dynamic> _userDetails = {};
+
   GoogleSignInAccount get user => _user;
   User get firebaseUser => _firebaseUser;
   String get signedInUserType => _signedInUserType;
+  Map<String, dynamic> get userDetails => _userDetails;
 
   Future googleLogIn() async {
     final googleSignIn = GoogleSignIn();
@@ -84,5 +87,16 @@ class AuthFunctions with ChangeNotifier {
       print(e.toString());
       return false;
     }
+  }
+  Future getUserDetails() async {
+    await FirebaseFirestore.instance
+        .collection("trainee_users")
+        .doc(_firebaseUser.uid)
+        .get()
+        .then((DocumentSnapshot doc) {
+      _userDetails = doc.data();
+    });
+    print(_userDetails);
+    notifyListeners();
   }
 }

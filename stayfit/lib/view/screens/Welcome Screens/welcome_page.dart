@@ -39,6 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         _userType = value;
       });
     });
+
   }
 
   @override
