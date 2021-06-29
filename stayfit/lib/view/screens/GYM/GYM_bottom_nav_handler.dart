@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/GYM/add_instructor.dart';
 import 'package:stayfit/view/screens/GYM/add_session.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
@@ -295,7 +296,14 @@ class ThirdPage extends StatelessWidget {
                 iconSize: 150,
                 color: Colors.white60,
                 icon: Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AddInstructor(),
+                    ),
+                  );
+                },
               ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

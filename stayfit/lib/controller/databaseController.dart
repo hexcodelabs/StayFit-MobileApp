@@ -8,6 +8,7 @@ class Database with ChangeNotifier {
   bool _traineeCreateStatus = true;
   bool _gymCreateStatus = true;
   bool _sessionCreateStatus = true;
+  bool _instructorCreateStatus = true;
   bool _gymListFetchStatus = false;
   bool _gymSessionFetchStatus = false;
   bool _gymUsersFetchStatus = false;
@@ -20,6 +21,7 @@ class Database with ChangeNotifier {
   bool get traineeCreateStatus => _traineeCreateStatus;
   bool get gymCreateStatus => _gymCreateStatus;
   bool get sessionCreateStatus => _sessionCreateStatus;
+  bool get instructorCreateStatus => _instructorCreateStatus;
   bool get getGymListFetchStatus => _gymListFetchStatus;
   bool get getGymSessionFetchStatus => _gymSessionFetchStatus;
   bool get getGymUsersFetchStatus => _gymUsersFetchStatus;
@@ -27,7 +29,7 @@ class Database with ChangeNotifier {
 
   Map<int, dynamic> get getGymList => _gymList;
   List<Map> get getGymSessions => _gymSessions;
-  List<Map> get getFavourites=> _favourites;
+  List<Map> get getFavourites => _favourites;
 
   set setGymListFetchStatus(bool value) {
     _gymListFetchStatus = value;
@@ -65,7 +67,17 @@ class Database with ChangeNotifier {
 
   Future<void> createSession(object) async {
     DocumentReference ref =
-    FirebaseFirestore.instance.collection("gym_sessions").doc();
+        FirebaseFirestore.instance.collection("gym_sessions").doc();
+    await ref.set(object).catchError((e) {
+      _sessionCreateStatus = false;
+      print(e.toString());
+    });
+    notifyListeners();
+  }
+
+  Future<void> createInstructor(object) async {
+    DocumentReference ref =
+        FirebaseFirestore.instance.collection("gym_instructors").doc();
     await ref.set(object).catchError((e) {
       _sessionCreateStatus = false;
       print(e.toString());
@@ -115,7 +127,6 @@ class Database with ChangeNotifier {
         .update({
       "favourites": FieldValue.arrayUnion([sessionId])
     });
-
   }
 
   Future<void> removeFavorites(String uId, String sessionId) async {
@@ -128,35 +139,26 @@ class Database with ChangeNotifier {
   }
 
   Future<void> favourites(List<dynamic> sessionIds) async {
-
-    if (sessionIds != null){
-      if(sessionIds.isEmpty){
+    if (sessionIds != null) {
+      if (sessionIds.isEmpty) {
         _favourites = [];
-      }else{
+      } else {
         _favouritesFetchStatus = false;
         _favourites = [];
 
-        for (int i=0 ; i<sessionIds.length ; i++){
+        for (int i = 0; i < sessionIds.length; i++) {
           await FirebaseFirestore.instance
               .doc(sessionIds[i])
               .get()
-              .then((doc) => {
-            _favourites.add(doc.data())
-          });
+              .then((doc) => {_favourites.add(doc.data())});
         }
         print(_favourites);
         _favouritesFetchStatus = true;
         notifyListeners();
       }
-
     }
-
-
-
   }
-
 }
-
 
 //  DocumentSnapshot docSnap = await _gymList[entry]["sessions"][0].get();
 //  _gymSessions.add(Map<String, dynamic>.from(docSnap.data()));
