@@ -3,9 +3,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as path;
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/color.dart';
 import 'package:stayfit/utils/themes.dart';
@@ -21,6 +22,7 @@ class AddInstructor extends StatefulWidget {
 
 class _AddInstructorState extends State<AddInstructor> {
   var providerDatabase;
+  var providerAuth;
 
   String gym;
 
@@ -112,7 +114,7 @@ class _AddInstructorState extends State<AddInstructor> {
       return errorMessage("Error! Please add an Image!!");
     } else {
       try {
-        String fileName = basename(_image.path); // should create best id
+        String fileName = path.basename(_image.path); // should create best id
         Reference firebaseStorageRef = FirebaseStorage.instance
             .ref('/GYM/instructor-images')
             .child(fileName);
@@ -137,12 +139,13 @@ class _AddInstructorState extends State<AddInstructor> {
         );
         print(imageUrl);
         if (save) {
-          var _instructoData = {
+          var _instructorData = {
             "name": instructorNameController.text,
             "image": imageUrl,
             "gym": gym,
+            "sessions": [],
           };
-          await saveInFirestore(context, _instructoData);
+          await saveInFirestore(context, _instructorData);
         }
       } catch (e) {
         setState(() {
@@ -181,8 +184,9 @@ class _AddInstructorState extends State<AddInstructor> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    providerAuth = Provider.of<AuthFunctions>(context, listen: false);
     setState(() {
-      gym = "gym_users/gym_test_user";
+      gym = "gym_users/" + providerAuth.firebaseUser.uid;
     });
   }
 

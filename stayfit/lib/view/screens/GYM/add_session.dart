@@ -3,9 +3,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as path;
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/color.dart';
 import 'package:stayfit/utils/themes.dart';
@@ -21,6 +22,7 @@ class AddSession extends StatefulWidget {
 
 class _AddSessionState extends State<AddSession> {
   var providerDatabase;
+  var providerAuth;
 
   String gym;
 
@@ -189,7 +191,7 @@ class _AddSessionState extends State<AddSession> {
       return errorMessage("Error! Please add an Image!!");
     } else {
       try {
-        String fileName = basename(_image.path); // should create best id
+        String fileName = path.basename(_image.path); // should create best id
         Reference firebaseStorageRef =
             FirebaseStorage.instance.ref('/GYM/session-images').child(fileName);
         UploadTask uploadTask = firebaseStorageRef.putFile(_image);
@@ -217,7 +219,7 @@ class _AddSessionState extends State<AddSession> {
             "attenndees": [],
             "end_timestamp": end,
             "followers": [],
-            "gym": "",
+            "gym": gym,
             "language": languageDropdownValue,
             "name": sessionNameController.text,
             "price": currencyDropdownValue + " " + priceController.text,
@@ -263,10 +265,11 @@ class _AddSessionState extends State<AddSession> {
   @override
   void initState() {
     // TODO: implement initState
+    providerAuth = Provider.of<AuthFunctions>(context, listen: false);
     super.initState();
     setState(() {
       typesList = ["a", "b", "c"];
-      gym = "gym_users/gym_test_user";
+      gym = "gym_users/" + providerAuth.firebaseUser.uid;
     });
   }
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stayfit/model/GYM/user.dart';
 
 class Database with ChangeNotifier {
   bool _traineeCreateStatus = true;
@@ -14,6 +15,7 @@ class Database with ChangeNotifier {
   bool _gymUsersFetchStatus = false;
   bool _favouritesFetchStatus = false;
 
+  GYMUser _gymUser = new GYMUser();
   Map<int, dynamic> _gymList = {};
   List<Map> _gymSessions = [];
   List<Map> _favourites = [];
@@ -22,6 +24,7 @@ class Database with ChangeNotifier {
   bool get gymCreateStatus => _gymCreateStatus;
   bool get sessionCreateStatus => _sessionCreateStatus;
   bool get instructorCreateStatus => _instructorCreateStatus;
+  GYMUser get gymUser => _gymUser;
   bool get getGymListFetchStatus => _gymListFetchStatus;
   bool get getGymSessionFetchStatus => _gymSessionFetchStatus;
   bool get getGymUsersFetchStatus => _gymUsersFetchStatus;
@@ -70,7 +73,7 @@ class Database with ChangeNotifier {
         FirebaseFirestore.instance.collection("gym_sessions").doc();
     await ref.set(object).catchError((e) {
       _sessionCreateStatus = false;
-      print(e.toString());
+      print(ref.id.toString());
     });
     notifyListeners();
   }
