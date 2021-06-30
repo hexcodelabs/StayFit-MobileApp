@@ -1,7 +1,8 @@
 class Session {
-  List<String> attendees;
+  String id;
+  List<dynamic> attendees;
   DateTime end_timestamp;
-  List<String> followers;
+  List<dynamic> followers;
   String gym;
   String langusge;
   String name;
@@ -9,8 +10,11 @@ class Session {
   DateTime start_timestamp;
   String type;
   String instructor;
+  String image;
 
   Session({
+    this.id,
+    this.image,
     this.attendees,
     this.end_timestamp,
     this.followers,

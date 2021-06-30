@@ -73,6 +73,7 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
               "phone_number": dropdownValue + phoneNumberController.text,
               "sessions": [],
               "types": typeList,
+              "tag_line": "",
               "gmail": gmailController.text,
             };
             await providerDatabase.createGYM(
