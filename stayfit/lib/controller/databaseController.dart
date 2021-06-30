@@ -146,15 +146,14 @@ class Database with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> createSession(object) async {
+  Future<void> createSession(object, instructorIndex) async {
     _sessionCreateStatus = true;
     DocumentReference ref =
         FirebaseFirestore.instance.collection("gym_sessions").doc();
     await ref.set(object).catchError((e) {
       _sessionCreateStatus = false;
     });
-    debugPrint(object["gym"].toString().split("/")[0]);
-    debugPrint(object["gym"].toString().split("/")[1]);
+
     DocumentReference ref2 = FirebaseFirestore.instance
         .collection(object["gym"].toString().split("/")[0])
         .doc(object["gym"].toString().split("/")[1]);
@@ -182,6 +181,21 @@ class Database with ChangeNotifier {
       image: object["image"],
     );
     _gymUser.sessionDocs.add(i);
+
+    DocumentReference ref3 = FirebaseFirestore.instance
+        .collection(object["instructor"].toString().split("/")[0])
+        .doc(object["instructor"].toString().split("/")[1]);
+
+    _gymUser.instructorDocs[instructorIndex].sessions
+        .add("gym_sessions/" + ref.id);
+
+    await ref3.update({
+      "sessions":
+          List<String>.from(_gymUser.instructorDocs[instructorIndex].sessions),
+    }).catchError((e) {
+      debugPrint("DSgdf");
+      _sessionCreateStatus = false;
+    });
 
     notifyListeners();
   }
