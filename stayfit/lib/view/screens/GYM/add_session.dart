@@ -8,6 +8,7 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
+import 'package:stayfit/model/GYM/instructor.dart';
 import 'package:stayfit/utils/color.dart';
 import 'package:stayfit/utils/themes.dart';
 import 'package:stayfit/view/screens/GYM/GYM_bottom_nav_handler.dart';
@@ -36,6 +37,8 @@ class _AddSessionState extends State<AddSession> {
   String currencyDropdownValue = "lkr";
   String typeDropdownValue;
   String imageUrl = '';
+  Instructor selectedInstructor;
+  int selectedInstructorIndex;
 
   List<String> typesList;
 
@@ -172,8 +175,7 @@ class _AddSessionState extends State<AddSession> {
     );
   }
 
-  Future addSession(BuildContext context) async {
-    providerDatabase = await Provider.of<Database>(context, listen: false);
+  Future addSession() async {
     debugPrint("add Session");
     if (sessionNameController.text.isEmpty) {
       return errorMessage("Error! Please add a Session name!!");
@@ -187,6 +189,8 @@ class _AddSessionState extends State<AddSession> {
       return errorMessage("Error! Please select a language!!");
     } else if (typeDropdownValue == null) {
       return errorMessage("Error! Please select a type!!");
+    } else if (selectedInstructor == null) {
+      return errorMessage("Error! Please select an instructor!!");
     } else if (_image == null) {
       return errorMessage("Error! Please add an Image!!");
     } else {
@@ -226,6 +230,7 @@ class _AddSessionState extends State<AddSession> {
             "start_timestamp": start,
             "type": typeDropdownValue,
             "image": imageUrl,
+            "instructor": "gym_instructors/" + selectedInstructor.id,
           };
           await saveInFirestore(context, _sessionData);
         }
@@ -239,9 +244,7 @@ class _AddSessionState extends State<AddSession> {
   }
 
   void saveInFirestore(BuildContext context, var _sessionData) async {
-    await providerDatabase.createSession(
-      _sessionData,
-    );
+    await providerDatabase.createSession(_sessionData, selectedInstructorIndex);
 
     if (providerDatabase.sessionCreateStatus) {
       print("Successfully recorded");
@@ -266,9 +269,10 @@ class _AddSessionState extends State<AddSession> {
   void initState() {
     // TODO: implement initState
     providerAuth = Provider.of<AuthFunctions>(context, listen: false);
+    providerDatabase = Provider.of<Database>(context, listen: false);
     super.initState();
     setState(() {
-      typesList = ["a", "b", "c"];
+      typesList = List<String>.from(providerDatabase.gymUser.types);
       gym = "gym_users/" + providerAuth.firebaseUser.uid;
     });
   }
@@ -312,7 +316,7 @@ class _AddSessionState extends State<AddSession> {
               setState(() {
                 loading = true;
               });
-              await addSession(context);
+              await addSession();
               setState(() {
                 loading = false;
               });
@@ -509,6 +513,123 @@ class _AddSessionState extends State<AddSession> {
                       ),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Container(
+                            width: 38,
+                            height: 54,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 38,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    color: darkYellow,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Icon(
+                                    Icons.image,
+                                    color: lightYellow,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Add Instructor',
+                          style: TextStyle(
+                            color: textGrey,
+                            fontFamily: 'Gilroy',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 12,
+                      ),
+                      child: Container(
+                        height: 130,
+                        child: ListView.builder(
+                          itemCount:
+                              providerDatabase.gymUser.instructorDocs.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) =>
+                              GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedInstructor = providerDatabase
+                                    .gymUser.instructorDocs[index];
+                                selectedInstructorIndex = index;
+                              });
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Column(
+                                children: [
+                                  Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                              color: selectedInstructor ==
+                                                      providerDatabase.gymUser
+                                                          .instructorDocs[index]
+                                                  ? mainGreen
+                                                  : textGrey,
+                                              width: 3.0),
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  providerDatabase
+                                                      .gymUser
+                                                      .instructorDocs[index]
+                                                      .image)))),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    providerDatabase
+                                        .gymUser.instructorDocs[index].name,
+                                    overflow: TextOverflow.fade,
+                                    style: selectedInstructor !=
+                                            providerDatabase
+                                                .gymUser.instructorDocs[index]
+                                        ? TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            color: textGrey,
+                                            fontSize: 22,
+                                          )
+                                        : TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: mainGreen,
+                                            fontSize: 22,
+                                          ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 10,
