@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthFunctions with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  
+
   User _firebaseUser;
   GoogleSignInAccount _user;
   String _signedInUserType;
@@ -45,7 +45,10 @@ class AuthFunctions with ChangeNotifier {
 
   Future isSignedInCheck() async {
     var user = _auth.currentUser;
+
     if (user != null) {
+      await getUser();
+      debugPrint(firebaseUser.uid);
       await FirebaseFirestore.instance
           .collection("trainee_users")
           .get()
@@ -88,6 +91,7 @@ class AuthFunctions with ChangeNotifier {
       return false;
     }
   }
+
   Future getUserDetails() async {
     await FirebaseFirestore.instance
         .collection("trainee_users")

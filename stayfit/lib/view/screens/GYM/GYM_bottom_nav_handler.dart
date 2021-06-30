@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stayfit/controller/authController.dart';
+import 'package:stayfit/controller/databaseController.dart';
+import 'package:stayfit/utils/color.dart' as color;
 import 'package:stayfit/utils/colors.dart';
+import 'package:stayfit/view/screens/GYM/add_instructor.dart';
 import 'package:stayfit/view/screens/GYM/add_session.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
@@ -214,7 +219,20 @@ class _GYMBottomNavHandlerState extends State<GYMBottomNavHandler> {
   }
 }
 
-class FirstPage extends StatelessWidget {
+class FirstPage extends StatefulWidget {
+  @override
+  _FirstPageState createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  var providerDatabase;
+
+  @override
+  Future initState() {
+    super.initState();
+    providerDatabase = Provider.of<Database>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,30 +241,43 @@ class FirstPage extends StatelessWidget {
         childAspectRatio: 1.25,
         crossAxisCount: 1,
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => AddSession(),
-                ),
+          if (providerDatabase.gymUser.sessionDocs.length > 0)
+            ...providerDatabase.gymUser.sessionDocs.map((session) {
+              return EventCard(
+                eventName: session.name,
+                date: session.start_timestamp.month.toString() +
+                    session.start_timestamp.day.toString(),
+                likes: session.followers.length,
+                imagePath: session.image,
+                time: session.start_timestamp.toString().split(" ")[1],
               );
-            },
-            child: EventCard(
-              eventName: 'Yoga',
-              date: 'May 21st',
-              likes: 2500,
-              imagePath: 'assets/images/p5.png',
-              time: '1.00pm - 2.00pm ',
+            }).toList(),
+          Padding(
+            padding: const EdgeInsets.only(left: 45, right: 45, top: 30),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => AddSession(),
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.5),
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.add,
+                    size: 100,
+                    color: color.mainGreen,
+                  ),
+                ),
+              ),
             ),
-          ),
-          EventCard(
-            eventName: 'Body \nBuilding',
-            date: 'May 22st',
-            likes: 2200,
-            imagePath: 'assets/images/gym.jpeg',
-            time: '1.00pm - 2.00pm ',
-          ),
+          )
         ],
       ),
     );
@@ -265,7 +296,20 @@ class SecondPage extends StatelessWidget {
   }
 }
 
-class ThirdPage extends StatelessWidget {
+class ThirdPage extends StatefulWidget {
+  @override
+  _ThirdPageState createState() => _ThirdPageState();
+}
+
+class _ThirdPageState extends State<ThirdPage> {
+  var providerDatabase;
+
+  @override
+  Future initState() {
+    super.initState();
+    providerDatabase = Provider.of<Database>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -276,18 +320,12 @@ class ThirdPage extends StatelessWidget {
         childAspectRatio: 0.8,
         crossAxisCount: 2,
         children: [
-          InstructorCard(
-            name: 'John Doe',
-            imagePath: 'assets/images/jonny.jpeg',
-          ),
-          InstructorCard(
-            name: 'Danny Fernandaz',
-            imagePath: 'assets/images/danny.jpeg',
-          ),
-          InstructorCard(
-            name: 'Shasha Peiris',
-            imagePath: 'assets/images/sasha.jpeg',
-          ),
+          ...providerDatabase.gymUser.instructorDocs.map((instructor) {
+            return InstructorCard(
+              name: instructor.name,
+              imagePath: instructor.image,
+            );
+          }).toList(),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Container(
@@ -295,7 +333,14 @@ class ThirdPage extends StatelessWidget {
                 iconSize: 150,
                 color: Colors.white60,
                 icon: Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AddInstructor(),
+                    ),
+                  );
+                },
               ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -339,8 +384,8 @@ class InstructorCard extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(imagePath),
                 ),
                 color: Colors.white,
               ),

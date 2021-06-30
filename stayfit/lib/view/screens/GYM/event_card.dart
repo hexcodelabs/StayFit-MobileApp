@@ -19,7 +19,7 @@ class EventCard extends StatelessWidget {
             decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(imagePath),
+                  image: NetworkImage(imagePath),
                 ),
                 color: Colors.red,
                 borderRadius: BorderRadius.all(Radius.circular(40))),

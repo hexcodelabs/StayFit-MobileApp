@@ -67,10 +67,14 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
             var _gymData = {
               "address": addressController.text,
               "admin": adminController.text,
-              "phone_number": dropdownValue + phoneNumberController.text,
-              "types": typeList,
-              "gmail": gmailController.text,
+              "instructors": [],
+              "likes": 0,
               "name": nameController.text,
+              "phone_number": dropdownValue + phoneNumberController.text,
+              "sessions": [],
+              "types": typeList,
+              "tag_line": "",
+              "gmail": gmailController.text,
             };
             await providerDatabase.createGYM(
                 providerAuth.firebaseUser.uid, _gymData);

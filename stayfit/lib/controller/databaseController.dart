@@ -3,16 +3,21 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stayfit/model/GYM/instructor.dart';
+import 'package:stayfit/model/GYM/session.dart';
+import 'package:stayfit/model/GYM/user.dart';
 
 class Database with ChangeNotifier {
   bool _traineeCreateStatus = true;
   bool _gymCreateStatus = true;
   bool _sessionCreateStatus = true;
+  bool _instructorCreateStatus = true;
   bool _gymListFetchStatus = false;
   bool _gymSessionFetchStatus = false;
   bool _gymUsersFetchStatus = false;
   bool _favouritesFetchStatus = false;
 
+  GYMUser _gymUser = new GYMUser();
   Map<int, dynamic> _gymList = {};
   List<Map> _gymSessions = [];
   List<Map> _favourites = [];
@@ -20,6 +25,8 @@ class Database with ChangeNotifier {
   bool get traineeCreateStatus => _traineeCreateStatus;
   bool get gymCreateStatus => _gymCreateStatus;
   bool get sessionCreateStatus => _sessionCreateStatus;
+  bool get instructorCreateStatus => _instructorCreateStatus;
+  GYMUser get gymUser => _gymUser;
   bool get getGymListFetchStatus => _gymListFetchStatus;
   bool get getGymSessionFetchStatus => _gymSessionFetchStatus;
   bool get getGymUsersFetchStatus => _gymUsersFetchStatus;
@@ -27,7 +34,7 @@ class Database with ChangeNotifier {
 
   Map<int, dynamic> get getGymList => _gymList;
   List<Map> get getGymSessions => _gymSessions;
-  List<Map> get getFavourites=> _favourites;
+  List<Map> get getFavourites => _favourites;
 
   set setGymListFetchStatus(bool value) {
     _gymListFetchStatus = value;
@@ -56,20 +63,160 @@ class Database with ChangeNotifier {
         .collection("gym_users")
         .doc(uid)
         .set(object)
+        .then((value) => () async {
+              debugPrint("asd");
+            })
         .catchError((e) {
       _gymCreateStatus = false;
       print(e.toString());
     });
+    await loadUserData(uid);
+    notifyListeners();
+  }
+
+  Future<void> loadUserData(uid) async {
+    debugPrint("load datsa");
+    DocumentSnapshot docSnap =
+        await FirebaseFirestore.instance.collection("gym_users").doc(uid).get();
+    Map<String, dynamic> lis = docSnap.data();
+
+    _gymUser = GYMUser(
+      address: lis["address"],
+      admin: lis["admin"],
+      gmail: lis["gmail"],
+      id: uid,
+      instructorDocs: [],
+      instructors: lis["instructors"],
+      likes: lis["likes"],
+      name: lis["name"],
+      phone_number: lis["phone_number"],
+      sessionDocs: [],
+      sessions: lis["sessions"],
+      tag_line: lis["tag_line"],
+      types: lis["types"],
+    );
+
+    if (_gymUser.instructors.length > 0) {
+      for (var instructor in _gymUser.instructors) {
+        Map data = {};
+        var i = new Instructor();
+        await FirebaseFirestore.instance.doc(instructor).get().then((doc) => {
+              data = doc.data(),
+              debugPrint(instructor.toString().split("/")[1]),
+              i = new Instructor(
+                gym: data["gym"],
+                id: doc.id,
+                image: data["image"],
+                name: data["name"],
+                sessions: data["sessions"],
+              ),
+              _gymUser.instructorDocs.add(i),
+            });
+      }
+    }
+
+    if (_gymUser.sessions.length > 0) {
+      for (var session in _gymUser.sessions) {
+        Map data = {};
+        var i = new Session();
+        await FirebaseFirestore.instance.doc(session).get().then((doc) => {
+              data = doc.data(),
+              i = new Session(
+                attendees: data["attendees"],
+                end_timestamp: DateTime.fromMicrosecondsSinceEpoch(
+                    data["end_timestamp"].microsecondsSinceEpoch),
+                followers: data["followers"],
+                gym: data["gym"],
+                id: doc.id,
+                instructor: data["instructor"],
+                langusge: data["langusge"],
+                name: data["name"],
+                price: data["price"],
+                start_timestamp: DateTime.fromMicrosecondsSinceEpoch(
+                    data["start_timestamp"].microsecondsSinceEpoch),
+                image: data["image"],
+              ),
+              debugPrint(i.start_timestamp.toString()),
+              debugPrint(i.end_timestamp.toString()),
+              _gymUser.sessionDocs.add(i),
+            });
+      }
+    }
+
     notifyListeners();
   }
 
   Future<void> createSession(object) async {
+    _sessionCreateStatus = true;
     DocumentReference ref =
-    FirebaseFirestore.instance.collection("gym_sessions").doc();
+        FirebaseFirestore.instance.collection("gym_sessions").doc();
     await ref.set(object).catchError((e) {
       _sessionCreateStatus = false;
+    });
+    debugPrint(object["gym"].toString().split("/")[0]);
+    debugPrint(object["gym"].toString().split("/")[1]);
+    DocumentReference ref2 = FirebaseFirestore.instance
+        .collection(object["gym"].toString().split("/")[0])
+        .doc(object["gym"].toString().split("/")[1]);
+    _gymUser.sessions.add("gym_sessions/" + ref.id);
+
+    await ref2.update({
+      "sessions": List<String>.from(_gymUser.sessions),
+    }).catchError((e) {
+      debugPrint("DSgdf");
+      _sessionCreateStatus = false;
+    });
+
+    var i = new Session();
+    i = new Session(
+      attendees: object["attendees"],
+      end_timestamp: object["end_timestamp"],
+      followers: object["followers"],
+      gym: object["gym"],
+      id: ref.id,
+      instructor: object["instructor"],
+      langusge: object["langusge"],
+      name: object["name"],
+      price: object["price"],
+      start_timestamp: object["start_timestamp"],
+      image: object["image"],
+    );
+    _gymUser.sessionDocs.add(i);
+
+    notifyListeners();
+  }
+
+  Future<void> createInstructor(object) async {
+    _instructorCreateStatus = true;
+    DocumentReference ref =
+        FirebaseFirestore.instance.collection("gym_instructors").doc();
+    await ref.set(object).catchError((e) {
+      _instructorCreateStatus = false;
       print(e.toString());
     });
+
+    DocumentReference ref2 = FirebaseFirestore.instance
+        .collection(object["gym"].toString().split("/")[0])
+        .doc(object["gym"].toString().split("/")[1]);
+    _gymUser.instructors.add("gym_instructors/" + ref.id);
+
+    await ref2.update({
+      "instructors": List<String>.from(_gymUser.instructors),
+    }).catchError((e) {
+      _instructorCreateStatus = false;
+    });
+
+    var i = new Instructor();
+
+    i = new Instructor(
+      gym: object["gym"],
+      id: ref.id,
+      image: object["image"],
+      name: object["name"],
+      sessions: object["sessions"],
+    );
+    _gymUser.instructorDocs.add(i);
+
     notifyListeners();
   }
 
@@ -115,7 +262,6 @@ class Database with ChangeNotifier {
         .update({
       "favourites": FieldValue.arrayUnion([sessionId])
     });
-
   }
 
   Future<void> removeFavorites(String uId, String sessionId) async {
@@ -128,35 +274,26 @@ class Database with ChangeNotifier {
   }
 
   Future<void> favourites(List<dynamic> sessionIds) async {
-
-    if (sessionIds != null){
-      if(sessionIds.isEmpty){
+    if (sessionIds != null) {
+      if (sessionIds.isEmpty) {
         _favourites = [];
-      }else{
+      } else {
         _favouritesFetchStatus = false;
         _favourites = [];
 
-        for (int i=0 ; i<sessionIds.length ; i++){
+        for (int i = 0; i < sessionIds.length; i++) {
           await FirebaseFirestore.instance
               .doc(sessionIds[i])
               .get()
-              .then((doc) => {
-            _favourites.add(doc.data())
-          });
+              .then((doc) => {_favourites.add(doc.data())});
         }
         print(_favourites);
         _favouritesFetchStatus = true;
         notifyListeners();
       }
-
     }
-
-
-
   }
-
 }
-
 
 //  DocumentSnapshot docSnap = await _gymList[entry]["sessions"][0].get();
 //  _gymSessions.add(Map<String, dynamic>.from(docSnap.data()));
