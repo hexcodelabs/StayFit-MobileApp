@@ -394,7 +394,7 @@ class _AddSessionState extends State<AddSession> {
                   phoneNumberPrefix: Row(
                     children: [
                       SizedBox(
-                        width: 10,
+                        width: 9,
                       ),
                       DropdownButton<String>(
                         underline: SizedBox(),
@@ -563,7 +563,8 @@ class _AddSessionState extends State<AddSession> {
                         top: 12,
                       ),
                       child: Container(
-                        height: 130,
+                        constraints:
+                            BoxConstraints(minHeight: 130, maxHeight: 150),
                         child: ListView.builder(
                           itemCount:
                               providerDatabase.gymUser.instructorDocs.length,
