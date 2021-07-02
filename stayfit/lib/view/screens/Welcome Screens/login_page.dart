@@ -68,13 +68,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 10,
                     ),
+
                     Text(
                       "Sign in to continue",
                       style: AppTheme.subTopicTS,
                     ),
-                    SizedBox(
-                      height: 80,
+
+                    Expanded(
+                      child: Center(
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          child: Image.asset(
+                            "assets/logo/image2.png",
+                          ),
+                        ),
+                      ),
                     ),
+
                     MainButton(
                       width: width - 60,
                       height: height,
@@ -135,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       shadowColor: mainGreen,
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.center,

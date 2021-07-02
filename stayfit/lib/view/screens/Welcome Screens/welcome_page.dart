@@ -113,6 +113,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: SafeArea(
         child: Stack(
           children: [
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Image.asset("assets/logo/weightLiftingImage.png"),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
               child: Column(
@@ -135,10 +139,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ],
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Image.asset("assets/logo/weightLiftingImage.png"),
             ),
           ],
         ),
