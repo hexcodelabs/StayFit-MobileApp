@@ -73,9 +73,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: backgroundGrey,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50),
+        padding: const EdgeInsets.only(bottom: 50, right: 20),
         child: MainButton(
-          width: width * 0.7,
+          width: 70,
           height: height,
           onPressed: () {
             if (!loading) {
@@ -103,45 +103,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               }
             }
           },
-          text: "Next",
+          text: "",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
           boxColor: mainGreen,
           shadowColor: mainGreen,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomContainer(
-                width: 50,
-                height: 50,
-                boxColor: mainGreen,
-                radius: 12,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Image.asset("assets/logo/weightLiftingImage.png"),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height * 0.1,
+                  ),
+                  SvgPicture.asset("assets/logo/stayFitName.svg"),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    width: width * 0.7,
+                    child: Text(
+                      "Text messages are used for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages ",
+                      style: AppTheme.welcomePageContentTS,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "Welcome",
-                style: AppTheme.topicTS,
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                width: width * 0.7,
-                child: Text(
-                  "Text messages are used for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages ",
-                  style: AppTheme.welcomePageContentTS,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
