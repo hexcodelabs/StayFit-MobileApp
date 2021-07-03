@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     this.onTap,
     this.phoneNumberPrefixWidth = 115,
+    this.onChanged,
   }) : super(key: key);
 
   final double height;
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final Function onTap;
   final double phoneNumberPrefixWidth;
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class CustomTextField extends StatelessWidget {
         height: 54,
         child: TextField(
           onTap: onTap,
+          onChanged: onChanged,
           style: AppTheme.textFieldTS,
           controller: controller,
           obscureText: obscureText,

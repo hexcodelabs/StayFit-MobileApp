@@ -7,6 +7,7 @@ import 'package:stayfit/utils/color.dart' as color;
 import 'package:stayfit/utils/colors.dart';
 import 'package:stayfit/view/screens/GYM/add_instructor.dart';
 import 'package:stayfit/view/screens/GYM/add_session.dart';
+import 'package:stayfit/view/screens/GYM/view_session.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
 import 'event_card.dart';
@@ -243,13 +244,24 @@ class _FirstPageState extends State<FirstPage> {
         children: [
           if (providerDatabase.gymUser.sessionDocs.length > 0)
             ...providerDatabase.gymUser.sessionDocs.map((session) {
-              return EventCard(
-                eventName: session.name,
-                date: session.start_timestamp.month.toString() +
-                    session.start_timestamp.day.toString(),
-                likes: session.followers.length,
-                imagePath: session.image,
-                time: session.start_timestamp.toString().split(" ")[1],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ViewSession(session: session),
+                    ),
+                  );
+                },
+                child: EventCard(
+                  eventName: session.name,
+                  date: session.start_timestamp.month.toString() +
+                      session.start_timestamp.day.toString(),
+                  likes: session.followers.length,
+                  imagePath: session.image,
+                  time: session.start_timestamp.toString().split(" ")[1],
+                ),
               );
             }).toList(),
           Padding(

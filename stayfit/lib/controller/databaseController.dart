@@ -11,6 +11,7 @@ class Database with ChangeNotifier {
   bool _traineeCreateStatus = true;
   bool _gymCreateStatus = true;
   bool _sessionCreateStatus = true;
+  bool _sessionUpdateStatus = true;
   bool _instructorCreateStatus = true;
   bool _gymListFetchStatus = false;
   bool _gymSessionFetchStatus = false;
@@ -25,6 +26,7 @@ class Database with ChangeNotifier {
   bool get traineeCreateStatus => _traineeCreateStatus;
   bool get gymCreateStatus => _gymCreateStatus;
   bool get sessionCreateStatus => _sessionCreateStatus;
+  bool get sessionUpdateStatus => _sessionUpdateStatus;
   bool get instructorCreateStatus => _instructorCreateStatus;
   GYMUser get gymUser => _gymUser;
   bool get getGymListFetchStatus => _gymListFetchStatus;
@@ -129,12 +131,13 @@ class Database with ChangeNotifier {
                 gym: data["gym"],
                 id: doc.id,
                 instructor: data["instructor"],
-                langusge: data["langusge"],
+                langusge: data["language"],
                 name: data["name"],
                 price: data["price"],
                 start_timestamp: DateTime.fromMicrosecondsSinceEpoch(
                     data["start_timestamp"].microsecondsSinceEpoch),
                 image: data["image"],
+                type: data["type"],
               ),
               debugPrint(i.start_timestamp.toString()),
               debugPrint(i.end_timestamp.toString()),
@@ -196,6 +199,67 @@ class Database with ChangeNotifier {
       debugPrint("DSgdf");
       _sessionCreateStatus = false;
     });
+
+    notifyListeners();
+  }
+
+  Future<void> updateSession(
+      object, instructorIndex, sessionID, preInstructor) async {
+    _sessionUpdateStatus = true;
+    DocumentReference ref =
+        FirebaseFirestore.instance.collection("gym_sessions").doc(sessionID);
+    await ref.update(object).catchError((e) {
+      debugPrint("1");
+      _sessionUpdateStatus = false;
+    });
+
+    int sessionDocIndex =
+        _gymUser.sessionDocs.indexWhere((element) => sessionID == element.id);
+
+    _gymUser.sessionDocs[sessionDocIndex].end_timestamp =
+        object["end_timestamp"];
+
+    _gymUser.sessionDocs[sessionDocIndex].langusge = object["langusge"];
+    _gymUser.sessionDocs[sessionDocIndex].name = object["name"];
+    _gymUser.sessionDocs[sessionDocIndex].price = object["price"];
+    _gymUser.sessionDocs[sessionDocIndex].start_timestamp =
+        object["start_timestamp"];
+    _gymUser.sessionDocs[sessionDocIndex].image = object["image"];
+
+    if (preInstructor != object["instructor"]) {
+      _gymUser.sessionDocs[sessionDocIndex].instructor = object["instructor"];
+
+      DocumentReference ref3 = FirebaseFirestore.instance
+          .collection(object["instructor"].toString().split("/")[0])
+          .doc(object["instructor"].toString().split("/")[1]);
+
+      _gymUser.instructorDocs[instructorIndex].sessions
+          .add("gym_sessions/" + ref.id);
+
+      await ref3.update({
+        "sessions": List<String>.from(
+            _gymUser.instructorDocs[instructorIndex].sessions),
+      }).catchError((e) {
+        _sessionUpdateStatus = false;
+      });
+
+      int preInstructorDocIndex = _gymUser.instructorDocs
+          .indexWhere((element) => preInstructor.split("/")[1] == element.id);
+
+      DocumentReference ref4 = FirebaseFirestore.instance
+          .collection("gym_instructors")
+          .doc(_gymUser.instructorDocs[preInstructorDocIndex].id);
+
+      _gymUser.instructorDocs[preInstructorDocIndex].sessions
+          .remove("gym_sessions/" + ref.id);
+
+      await ref4.update({
+        "sessions": List<String>.from(
+            _gymUser.instructorDocs[preInstructorDocIndex].sessions),
+      }).catchError((e) {
+        _sessionUpdateStatus = false;
+      });
+    }
 
     notifyListeners();
   }

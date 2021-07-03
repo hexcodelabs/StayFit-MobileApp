@@ -105,6 +105,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           },
           text: "",
           suffixIcon: SvgPicture.asset("assets/images/next.svg"),
+          loading: loading,
           boxColor: mainGreen,
           shadowColor: mainGreen,
         ),
