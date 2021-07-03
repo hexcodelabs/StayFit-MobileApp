@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:stayfit/controller/authController.dart';
 import 'package:stayfit/controller/databaseController.dart';
@@ -256,11 +258,20 @@ class _FirstPageState extends State<FirstPage> {
                 },
                 child: EventCard(
                   eventName: session.name,
-                  date: session.start_timestamp.month.toString() +
-                      session.start_timestamp.day.toString(),
+                  date: DateFormat('MMMM')
+                          .format(session.start_timestamp)
+                          .toString() +
+                      " " +
+                      Jiffy(session.start_timestamp).format("do").toString(),
                   likes: session.followers.length,
                   imagePath: session.image,
-                  time: session.start_timestamp.toString().split(" ")[1],
+                  time: DateFormat('hh:mm a')
+                          .format(session.start_timestamp)
+                          .toString() +
+                      " - " +
+                      DateFormat('hh:mm a')
+                          .format(session.end_timestamp)
+                          .toString(),
                 ),
               );
             }).toList(),
