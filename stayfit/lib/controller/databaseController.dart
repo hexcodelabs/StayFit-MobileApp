@@ -177,11 +177,12 @@ class Database with ChangeNotifier {
       gym: object["gym"],
       id: ref.id,
       instructor: object["instructor"],
-      langusge: object["langusge"],
+      langusge: object["language"],
       name: object["name"],
       price: object["price"],
       start_timestamp: object["start_timestamp"],
       image: object["image"],
+      type: object["type"],
     );
     _gymUser.sessionDocs.add(i);
 
