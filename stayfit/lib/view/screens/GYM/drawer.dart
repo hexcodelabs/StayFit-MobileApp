@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stayfit/controller/databaseController.dart';
 import 'package:stayfit/utils/colors.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -14,6 +16,7 @@ class DrawerMenu extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final providerDatabase = Provider.of<Database>(context, listen: false);
     double drawerWidth = screenWidth * 0.7;
     double profileImageSize = drawerWidth * 0.3;
     double drawerContainerSize = screenHeight - profileImageSize - 200;
@@ -34,7 +37,7 @@ class DrawerMenu extends StatelessWidget {
                       fit: BoxFit.cover,
                       placeholder: 'assets/images/default-profile.png',
                       image:
-                          'https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+                          'https://firebasestorage.googleapis.com/v0/b/stay-fit-d0b34.appspot.com/o/GYM%2Fuser-images%2Fdefault-profile.png?alt=media&token=063e6e8a-4214-42a1-8de8-b4fe683ef63b',
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(profileImageSize / 2),
@@ -47,7 +50,7 @@ class DrawerMenu extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 12, bottom: 4),
                   child: Text(
-                    "Fitness Center",
+                    providerDatabase.gymUser.name,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -57,7 +60,7 @@ class DrawerMenu extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 0, bottom: 24),
                   child: Text(
-                    "fitnesscenter@gmail.com",
+                    providerDatabase.gymUser.gmail,
                     style: TextStyle(
                       color: transparentWhite50,
                       fontSize: 14,
