@@ -9,6 +9,7 @@ import 'package:stayfit/utils/color.dart' as color;
 import 'package:stayfit/utils/colors.dart';
 import 'package:stayfit/view/screens/GYM/add_instructor.dart';
 import 'package:stayfit/view/screens/GYM/add_session.dart';
+import 'package:stayfit/view/screens/GYM/profile_page.dart';
 import 'package:stayfit/view/screens/GYM/view_session.dart';
 import 'package:stayfit/view/widgets/shared_widgets.dart';
 
@@ -302,18 +303,6 @@ class _FirstPageState extends State<FirstPage> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Container(
-        color: Colors.red,
       ),
     );
   }

@@ -9,11 +9,13 @@ class TypeContainer extends StatelessWidget {
     @required this.item,
     this.onTap,
     this.containerColor,
+    this.close = true,
   }) : super(key: key);
 
   final String item;
   final Function onTap;
   final Color containerColor;
+  final bool close;
 
   @override
   Widget build(BuildContext context) {
@@ -38,22 +40,24 @@ class TypeContainer extends StatelessWidget {
           SizedBox(
             width: 8,
           ),
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
-              width: 18,
-              height: 18,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.grey[50].withOpacity(0.6),
-              ),
-              child: Icon(
-                Icons.close,
-                color: mainRed,
-                size: 12,
-              ),
-            ),
-          ),
+          close
+              ? GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.grey[50].withOpacity(0.6),
+                    ),
+                    child: Icon(
+                      Icons.close,
+                      color: mainRed,
+                      size: 12,
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
