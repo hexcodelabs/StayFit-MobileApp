@@ -36,8 +36,7 @@ class DrawerMenu extends StatelessWidget {
                     child: FadeInImage.assetNetwork(
                       fit: BoxFit.cover,
                       placeholder: 'assets/images/default-profile.png',
-                      image:
-                          'https://firebasestorage.googleapis.com/v0/b/stay-fit-d0b34.appspot.com/o/GYM%2Fuser-images%2Fdefault-profile.png?alt=media&token=063e6e8a-4214-42a1-8de8-b4fe683ef63b',
+                      image: providerDatabase.gymUser.image,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(profileImageSize / 2),

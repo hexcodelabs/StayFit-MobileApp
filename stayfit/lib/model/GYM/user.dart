@@ -15,6 +15,7 @@ class GYMUser {
   List<dynamic> types;
   List<dynamic> instructors;
   List<Instructor> instructorDocs;
+  String image;
 
   GYMUser({
     this.id,
@@ -30,5 +31,6 @@ class GYMUser {
     this.sessionDocs,
     this.tag_line,
     this.types,
+    this.image,
   });
 }
