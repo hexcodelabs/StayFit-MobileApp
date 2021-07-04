@@ -75,6 +75,8 @@ class _GymInformationScreenState extends State<GymInformationScreen> {
               "types": typeList,
               "tag_line": "",
               "gmail": gmailController.text,
+              "image":
+                  "https://firebasestorage.googleapis.com/v0/b/stay-fit-d0b34.appspot.com/o/GYM%2Fuser-images%2Fdefault-profile.png?alt=media&token=063e6e8a-4214-42a1-8de8-b4fe683ef63b",
             };
             await providerDatabase.createGYM(
                 providerAuth.firebaseUser.uid, _gymData);

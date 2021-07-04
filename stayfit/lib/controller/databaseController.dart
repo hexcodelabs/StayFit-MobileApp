@@ -96,6 +96,7 @@ class Database with ChangeNotifier {
       sessions: lis["sessions"],
       tag_line: lis["tag_line"],
       types: lis["types"],
+      image: lis["image"],
     );
 
     if (_gymUser.instructors.length > 0) {
